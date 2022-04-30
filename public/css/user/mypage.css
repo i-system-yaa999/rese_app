@@ -1,0 +1,243 @@
+.content_main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+/* 769pxまで（768px以下）の場合 */
+@media(max-width:769px) {
+  .content_main {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -------------------------------------------------- */
+.reserve_frame {
+  width: 90%;
+  margin: 0 auto;
+}
+/* 769pxまで（768px以下）の場合 */
+@media(max-width:769px) {
+  .reserve_frame {
+    width: 85%;
+  }
+}
+.reserve_head {
+  font-size: 1.5rem;
+  margin: 30px auto;
+  text-align: center;
+}
+.reserve_inner {
+  padding: 40px 5%;
+  background-color: var(--middleblue);
+  margin-bottom: 3vh;
+  color: white;
+}
+.reserve_itemhead{
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 予約状況ボタン関係 */
+.reserve_del,
+.reserve_change,
+.reserve_send{
+  background-color: #F0F0F0;
+  border: 1px solid black;
+  width: 200px;
+  border-radius: 5px;
+  margin: 15px 0 10px auto;
+  font-size: 0.9rem;
+  font-weight: bold;
+  line-height: 2rem;
+  text-align: center;
+  display: block;
+}
+/* 予約変更画面 */
+.reserve_value {
+  display: none;
+}
+.toggle_open{
+  display: block;
+}
+
+
+
+.reserve_value input {
+  line-height: 1.5rem;
+  margin-bottom: 20px;
+  display: block;
+  width: 40vw;
+  border-radius: 5px;
+}
+
+.reserve_value select {
+  /* line-height: 40px; */
+  height: 2rem;
+  margin-bottom: 20px;
+  display: block;
+  width: 40%;
+  border-radius: 5px;
+}
+
+.reserve_confirm {
+  color: #fff;
+  background-color: var(--lightblue);
+  padding: 3%;
+  border-radius: 7px;
+}
+
+.reserve_confirm table {
+  text-align: left;
+}
+
+.reserve_confirm th {
+  width: 10%;
+  padding: 10px 5%;
+}
+
+.reserve_confirm td {
+  width: 30%;
+  padding: 10px 5%;
+}
+
+.reserve_send {}
+
+.reserve_send button {
+  width: 100%;
+  height: 50px;
+  background-color: blue;
+  border: none;
+  cursor: pointer;
+  /* outline: none; */
+  padding: 0;
+  /* appearance: none; */
+  color: white;
+  position: absolute;
+  bottom: 0;
+  border-radius: 7px;
+}
+
+
+
+/* -------------------------------------------------- */
+.likes_confirm_frame {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* 769pxまで（768px以下）の場合 */
+@media(max-width:769px) {
+  .likes_confirm_frame {
+    width: 97%;
+  }
+}
+.likes_confirm_head {
+  font-size: 1.5rem;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.likes_confirm_inner {
+  padding: 40px 5%;
+  background-color:#F0F0F0;
+  border: 1px solid gray;
+}
+/* 769pxまで（768px以下）の場合 */
+@media(max-width:769px) {
+  .likes_confirm_inner {
+    padding: 5px;
+  }
+}
+
+
+/* -------------------------------------------------- */
+.likes_confirm_data {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.content_item {
+  /* width: calc(var(--tab_width)/4 - var(--tab_inner_padding)); */
+  width: 90%;
+  /* height: calc(var(--tab_width)/4 - var(--tab_inner_padding) * 2); */
+  height: 95%;
+  margin: 3%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  min-height: 280px;
+}
+
+/* 769pxまで（768px以下）の場合 */
+@media(max-width:769px) {
+  .content_data {
+    grid-template-columns: repeat(var(--item_columns_small), 1fr);
+  }
+
+  .content_item {
+    width: calc(var(--tab_width)/var(--item_columns_small));
+  }
+}
+
+.content_item_image {
+  width: 100%;
+  /* height: calc((var(--tab_width)/4 - var(--tab_inner_padding))/2*1.1); */
+  height: 60%;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.content_inner_frame {
+  /* background-color: aquamarine; */
+  width: 90%;
+  /* height: calc((var(--tab_width)/4 - var(--tab_inner_padding))/2 - 4vw); */
+  height: 34%;
+  margin: 3% auto;
+}
+
+.content_summary {
+  font-size: 0.7rem;
+  margin-top: 2%;
+  line-height: 0.8rem;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  /* text-overflow: ellipsis; */
+  overflow: hidden;
+}
+
+.content_summary:hover {
+  /* overflow: visible; */
+  /* margin-bottom: 2.4rem; */
+}
+
+/* .content_summary:hover .content_item_image{
+  height: 20%;
+} */
+.content_hashtag {
+  font-size: 0.7rem;
+  margin: 3% 0;
+}
+
+.content_action {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content_action .content_submit {
+  background-color: var(--middleblue);
+  color: white;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  padding: 2% 5%;
+}
+
+.content {
+  color: rgb(255, 72, 72);
+}
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}

@@ -1,0 +1,11 @@
+<!--?xml version="1.0" encoding="utf-8"?-->
+<svg version="1.1" id="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
+<!-- points : 左上x,y 左下x,y 真ん中x,y 右下x,y 右上x,y -->
+	<polygon class="st0" points="0,0 0,512 256,430 512,512 512,0"></polygon>
+	<style>
+	.st0{
+		opacity: 1;
+		fill: rgb(75, 75, 75);
+	}
+	</style>
+</svg>

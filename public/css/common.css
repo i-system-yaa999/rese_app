@@ -1,0 +1,380 @@
+/* -------------------------------------------------- */
+/* デバックモード時コメントアウト */
+.debug {
+  display: none;
+}
+/* -------------------------------------------------- */
+:root{
+
+  font-size: 100%;
+
+  /* --media_width:769px; */
+  --darkblue:#052AC2;
+  --middleblue:#2F5CFF;
+  --lightblue:#4C7EFF;
+
+  --header_img_size:30px;
+
+  --tab_width:90vw;
+  --tab_inner_padding:30px;
+
+  --item_columns:4;
+  --item_columns_small:2;
+}
+/* -------------------------------------------------- */
+/* 769pxまで（768px以下）の場合 */
+@media(max-width:769px) {
+  :root{
+    font-size: 80%;
+  }
+}
+/* -------------------------------------------------- */
+body{
+  width: 100vw;
+  height: 100vh;
+}
+
+/* -------------------------------------------------- */
+/* ヘッダー */
+/* -------------------------------------------------- */
+.header{
+  margin: 0 30px 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.site_catch a{
+  text-decoration: none;
+}
+.site_title{
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* (100vw - .header.margin-left) / 2 - .site_title / 2 */
+  transform:translate(calc((100vw - 30px) / 2 - 56.3px), 10px);
+  display: flex;
+  text-decoration: none;
+}
+.media_onry{
+  display: none;
+}
+@media(max-width:769px) {
+  .header{
+    margin: 0 40px 0 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* ハンバーガーメニューがずれるため static*/
+    position: static;
+  }
+  .site_catch {
+  /* display: none; */
+  grid-column: 1 / span 2;
+  margin-bottom: 1vh;
+  }
+  .site_title{
+    position: static;
+    transform: none;
+  }
+  .media_onry {
+    display: block;
+  }
+}
+.site_title img {
+  width: var(--header_img_size);
+}
+.title{
+  color: var(--middleblue);
+  margin-left: 10px;
+  font-size: 1.8rem;
+  line-height: var(--header_img_size);
+}
+
+
+/* -------------------------------------------------- */
+/* ハンバーガーメニュー */
+/* -------------------------------------------------- */
+/* ナビボタンhide指定 */
+.nav-button {
+  display: none;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  box-sizing: content-box;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+/* ハンバーガーメニューバー作成 */
+.nav-button::before,
+.nav-button::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background-color: currentColor;
+  transition: 0.3s ease-in-out;
+}
+/* 上線位置修正 */
+.nav-button::before {
+  transform: translateY(-10px);
+  box-shadow: 0 11px currentColor;
+}
+/* 下線位置修正 */
+.nav-button::after {
+  transform: translateY(10px);
+}
+@media(max-width:769px) {
+  .nav-button {
+    margin-left: auto;
+  }
+}
+/* ナビメニューflex化 */
+.nav ul {
+    display: flex;
+    align-items: center;
+  }
+/* ナビ文字間指定 */
+.nav li:not(:last-child) {
+    margin-right: 1vw;
+  }
+/* -------------------------------------------------- */
+/* ナビボタン✕状態 */
+.open .nav-button {
+  z-index: 1000;
+}
+/* 斜めバー作成 */
+.open .nav-button::before {
+  box-shadow: none;
+  transform: translateY(1px) rotate(45deg);
+}
+/* 斜めバー作成 */
+.open .nav-button::after {
+  transform: translateY(-1px) rotate(-45deg);
+}
+/* -------------------------------------------------- */
+/* ナビメニュー:モバイル */
+@media(max-width:769px) {
+  /* 開閉共通 */
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  .nav{
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    transition: left 0.5s;
+    /* 文字位置 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  /* 文字縦並び */
+  .nav ul {
+    display: block;
+    text-align: center;
+  }
+  .nav li{
+    padding: 30px 0;
+  }
+  .nav li a {
+    color: #ffffff;
+  }
+  /* ハンバーガーメニュー表示ON */
+  .nav-button {
+    display: block;
+  }
+  /* メニュー閉じてるとき */
+  body {
+    position: relative;
+  }
+  .nav {
+    position: absolute;
+    top: 0;
+    left: 100vw;
+  }
+  
+  /* メニュー開いたとき */
+  /* 画面全体に指定 */
+  html .open,
+  .open body {
+    height: 100vh;
+    overflow: hidden;
+  }
+  .open .nav {
+    left: 0;
+  }
+  .open .nav-button {
+    color: white;
+  }
+}
+/* -------------------------------------------------- */
+/* ハンバーガーメニューここまで */
+/* -------------------------------------------------- */
+
+
+/* -------------------------------------------------- */
+/* お気に入り関係 */
+/* -------------------------------------------------- */
+.like_disp {
+  display: flex;
+  align-items: center;
+  font-size: 0.7rem;
+}
+.like_count {
+  text-align: center;
+}
+.like_on {
+  background-image: url(/image/bookmark_on.svg);
+  border: 0px;
+  width: 24px;
+  height: 24px;
+}
+.like_off {
+  background-image: url(/image/bookmark_off.svg);
+  border: 0px;
+  width: 24px;
+  height: 24px;
+}
+
+/* -------------------------------------------------- */
+/* フッター */
+/* -------------------------------------------------- */
+.footer{
+  margin-top: 20vh;
+}
+.footer .endnav ul{
+  display: flex;
+  justify-content: center;
+}
+@media(max-width:769px) {
+  .footer .endnav ul {
+    display: block;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.3rem;
+  }
+  .footer .endnav ul span{
+    display: none;
+  }
+}
+.footer .endnav ul li a{
+  text-decoration: none;
+  color: black;
+}
+.footer .endnav ul li a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+.copyright{
+  display: block;
+  text-align: center;
+  margin: 10px;
+  font-size: 0.7rem;
+}
+
+/* -------------------------------------------------- */
+/* メッセージボックス */
+/* -------------------------------------------------- */
+.message_box {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 35vw;
+  height: auto;
+  margin: 100px auto;
+  padding: 0 0 40px 0;
+  text-align: center;
+  box-shadow: 2px 2px 4px 2px gray;
+  /* position: relative; */
+}
+@media(max-width:769px) {
+  .message_box{
+    width: 95vw;
+    max-width: 500px;
+  }
+}
+.message_title{
+  background-color: var(--middleblue);
+  color: white;
+  margin-left: -1px;
+  width: 100.5%;
+  border-radius: 5px 5px 0 0;
+  height:3.5rem;
+  margin-bottom: 30px;
+}
+.message_box p {
+  line-height: 3.5rem;
+  font-size: 1.1rem;
+  text-align: left;
+  padding-left: 20px;
+}
+.message_form{
+}
+.message_form .input_disp{
+  border: none;
+  border-bottom: 1px solid black;
+  margin-top: 0.8rem;
+  width: 70%;
+}
+.message_form .error_disp{
+  border: none;
+  /* border-bottom: 1px solid black; */
+  /* margin-bottom: 15px; */
+  width: 70%;
+}
+.message_box button {
+  background-color: var(--middleblue);
+  color: white;
+  border-radius: 5px;
+  /* font-size: 0.7rem; */
+  padding: 5px 20px;
+  text-decoration: none;
+  margin: 15px 0 0 auto;
+}
+
+/* userバリデーションエラー */
+.error_disp{
+  color: red;
+  text-align: center;
+}
+/* 予約バリデーションエラー */
+.has-error {
+  border-color: red;
+  background-color: rgb(253, 152, 152);
+}
+
+/* -------------------------------------------------- */
+/* ページネーション */
+/* -------------------------------------------------- */
+.page_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: right;
+  margin: 10px;
+}
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+}
+.pagination .page-item {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  text-align: center;
+  border: 1px solid gray;
+}
+.pagination .active {
+  background-color:var(--middleblue);
+  color: white;
+}
+@media(max-width:769px) {
+  .page_info{
+    display: block;
+  }
+}
