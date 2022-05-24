@@ -1,64 +1,67 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+アプリの名称：Rese-app
+====
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## リポジトリ
+---
+https://github.com/i-system-yaa999/rese_app.git
 
-## About Laravel
+## アプリの概要：飲食店の紹介と予約
+さまざまな飲食店様の情報を提供しつつ、各お店への予約が可能になっています。  
+また、エリア毎、ジャンル毎に検索したり、お店の名前検索などにも対応し、お気に入り登録などを通じて、目的の飲食店様にアクセスしやい仕様になっています。  
+各お店へ予約を入れるためには、ユーザー登録が必要になります。  
+レスポンシブデザインを採用し、768px以下のスマホにも対応しています。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Demo(デモ画面)
+---
+![Sample Image](readme/image/rese_all_tab.png)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requirement(要件、環境など)
+---
+* データベースはmysqlを使用しています。
+* Windows & Opera にて動作確認しています。
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Important Points(注意事項)
+---
+* 
 
-## Learning Laravel
+## Install(インストール)
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. 初めにプロジェクトファイルをダウンロードします。  
+プロジェクトフォルダrese_appにすべてのファイルを入れてください。
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. mysqlにてデータベースrese_appを作成します。  
+コマンドプロンプト： mysql -u root -p  
+mysqlコマンド：create database rese_app;
 
-## Laravel Sponsors
+3. マイグレーションをしてテーブルを作成します。  
+コマンドプロンプト：cd rese_app  
+コマンドプロンプト：php artisan migrate
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+4. シーディングにてダミーデータを作成します。  
+コマンドプロンプト：php artisan db:seed  
+作成されるダミーデータは、以下になります。  
+    * 店舗データ：２００件
+    * エリアデータ：５００件
+    * ジャンルデータ：１２件
+    * ユーザーデータ：１０件
 
-### Premium Partners
+## Usage(使用方法)
+---
+* 右上にある「新規登録」メニューよりユーザー登録を行ってください。
+* ログイン後に展開される、トップページにて、飲食店様の一覧が表示されるので、目的の飲食店を探します。
+* タブを切り替えることにより、エリア、またはジャンル毎の表示が可能です。
+* 各店舗名称にて部分一致検索も行えます。
+* 「詳細を見る」ボタンをクリックすることにより、より詳しい各店舗ごとの情報が確認できます。
+* お気に入りマークをクリックすることにより、お気に入り登録が可能です。
+* メニューの「マイページ」より、予約の管理、お気に入りの管理が行えます。
+## Author(著者)
+---
+* 著者：石橋孝哉
+* 所属：i-system
+* e-mail：
+* [i-system](https://github.com/i-system-yaa999)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Licence
+---
+"リポジトリ名" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
