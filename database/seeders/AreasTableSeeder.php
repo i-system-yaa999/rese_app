@@ -15,6 +15,6 @@ class AreasTableSeeder extends Seeder
      */
     public function run()
     {
-        Area::factory()->count(500)->create();
+        Area::factory()->count(50)->create();
     }
 }
