@@ -17,7 +17,7 @@
   @include('layouts.header')
   @include('layouts.forms')
   <section class="content_main">
-    <div class=detail_frame name="detail" id="detail">
+    <div class="detail_frame" name="detail" id="detail">
       <!-- 店舗詳細 -------------------------------------------------------------------------------- -->
       <div class="detail_data">
         <!-- 店舗情報 -->
@@ -61,7 +61,7 @@
       </div>
       <!-- ----- end ----- -->
     </div>
-    <div class=reserve_frame name="reserve" id="reserve">
+    <div class="reserve_frame" name="reserve" id="reserve">
       <!-- 予約確認 -------------------------------------------------------------------------------- -->
       <h3 class="reserve_head">予約</h3>
       <!--  -->
@@ -133,6 +133,33 @@
       </div>
       <!-- ----- end ----- -->
 
+    </div>
+  </section>
+  <section class="auxiliary">
+    <div class="my_evaluation">
+      <p>前回、2022-05-27 17:00に予約しました。</p>
+      <button class="my_star"></button>
+      <button class="my_star"></button>
+      <button class="my_star"></button>
+      <button class="my_star"></button>
+      <button class="my_star"></button>
+      <textarea name="" id="" cols="100" rows="10"></textarea>
+      <button>評価を投稿する</button>
+    </div>
+    <div class="evaluation">
+      <p>評価（5件）</p>
+      <img src="{{asset('image/star0.png')}}" alt="" class="star">
+      <p>てすと１２３４５６７８９０１２３４５６７８９０あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめも</p>
+      <img src="{{asset('image/star1.png')}}" alt="" class="star">
+      <p>てすと</p>
+      <img src="{{asset('image/star2.png')}}" alt="" class="star">
+      <p>てすと</p>
+      <img src="{{asset('image/star3.png')}}" alt="" class="star">
+      <p>てすと</p>
+      <img src="{{asset('image/star4.png')}}" alt="" class="star">
+      <p>てすと</p>
+      <img src="{{asset('image/star5.png')}}" alt="" class="star">
+      <p>てすと</p>
     </div>
   </section>
   @include('layouts.footer')

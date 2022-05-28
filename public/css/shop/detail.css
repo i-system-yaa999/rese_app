@@ -1,6 +1,7 @@
 .content_main{
   display: grid;
   grid-template-columns: 1fr 1fr;
+  background-color: aquamarine;
 }
 /* 769pxまで（768px以下）の場合 */
 @media(max-width:769px) {
@@ -137,4 +138,29 @@ input[name="tab_item"] {
   position: absolute;
   bottom: 0;
   border-radius: 7px;
+}
+
+
+
+.auxiliary{
+  background-color: beige;
+  margin-top: 2rem;
+}
+.my_evaluation {
+  width: 85%;
+  margin: 0 auto;
+}
+.my_star{
+  background-image: url(/image/star_on.png);
+  border: 0px;
+  width: 24px;
+  height: 24px;
+}
+.evaluation{
+  width: 85%;
+  margin: 2rem auto;
+  background-color: white;
+}
+.star{
+  width: 150px;
 }
