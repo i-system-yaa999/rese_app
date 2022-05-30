@@ -136,30 +136,39 @@
     </div>
   </section>
   <section class="auxiliary">
+    @if(isset($after_reservation))
     <div class="my_evaluation">
-      <p>前回、2022-05-27 17:00に予約しました。</p>
-      <button class="my_star"></button>
-      <button class="my_star"></button>
-      <button class="my_star"></button>
-      <button class="my_star"></button>
-      <button class="my_star"></button>
-      <textarea name="" id="" cols="100" rows="10"></textarea>
-      <button>評価を投稿する</button>
+      <h3>前回、{{$reserved_at}}に予約しました。</h3>
+      @if(empty($iscomment))
+      <input type="hidden" id="my_star" name="evaluation" form="comment" value="0">
+      <button id="my_star1" class="my_star" onclick="star_change(1)"></button>
+      <button id="my_star2" class="my_star" onclick="star_change(2)"></button>
+      <button id="my_star3" class="my_star" onclick="star_change(3)"></button>
+      <button id="my_star4" class="my_star" onclick="star_change(4)"></button>
+      <button id="my_star5" class="my_star" onclick="star_change(5)"></button>
+      <textarea name="comment" id="" class="my_comment" cols="100" rows="10" form="comment"></textarea>
+      <button type="submit" class="my_evaluation_send" form="comment" formaction="/comment/{{$shop->id}}">評価を投稿する</button>
+      @else
+      <p>評価コメント投稿済みです。</p>
+      @endif
     </div>
+    @endif
     <div class="evaluation">
-      <p>評価（5件）</p>
-      <img src="{{asset('image/star0.png')}}" alt="" class="star">
-      <p>てすと１２３４５６７８９０１２３４５６７８９０あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめも</p>
-      <img src="{{asset('image/star1.png')}}" alt="" class="star">
-      <p>てすと</p>
-      <img src="{{asset('image/star2.png')}}" alt="" class="star">
-      <p>てすと</p>
-      <img src="{{asset('image/star3.png')}}" alt="" class="star">
-      <p>てすと</p>
-      <img src="{{asset('image/star4.png')}}" alt="" class="star">
-      <p>てすと</p>
-      <img src="{{asset('image/star5.png')}}" alt="" class="star">
-      <p>てすと</p>
+      <h3>評価（{{count($comments)}}件）</h3>
+      @if(count($comments)==0)
+      <p>評価はまだありません。</p>
+      @endif
+      {{--  --}}
+      <div class="evaluation_contents">
+        @foreach($comments as $comment)
+        <div class="evaluation_name">{{$comment->user->name}}</div>
+        <div class="evaluation_inner">
+          <img src="{{asset('image/star'.$comment->evaluation.'.png')}}" alt="" class="star">
+          <div class="evaluation_date">投稿日：{{$comment->created_at}}</div>
+        </div>
+        <div class="evaluation_comment">{{$comment->comment}}</div>
+        @endforeach
+      </div>
     </div>
   </section>
   @include('layouts.footer')

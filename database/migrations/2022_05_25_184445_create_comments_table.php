@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id')->comment('ユーザーID');
             $table->unsignedInteger('shop_id')->comment('ショップID');
             $table->unsignedInteger('evaluation')->comment('5段階評価数');
-            $table->text('comment')->comment('コメント');
+            $table->text('comment')->nullable()->comment('コメント');
             $table->timestamp('created_at')->useCurrent()->nullable()->comment('作成日時');
             $table->timestamp('updated_at')->useCurrent()->nullable()->comment('更新日時');
         });
