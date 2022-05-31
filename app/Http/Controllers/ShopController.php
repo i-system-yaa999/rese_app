@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Like;
-use App\Models\Reserve;
-use App\Models\Comment;
 use Closure;
 
 class ShopController extends Controller
@@ -127,22 +125,9 @@ class ShopController extends Controller
     // 詳細表示
     public function detail($id)
     {
-        // 詳細表示用データ
         $item=Shop::find($id);
-
-        // 予約済みか
-        $reserveDate = Reserve::where('user_id', Auth::user()->id)->where('shop_id', $id)->where('reserved_at','<=',date('Y-m-d H:i:s'))->first();
-        // 評価済みか
-        $iscomment = Comment:: where('user_id', Auth::user()->id)->where('shop_id', $id)->first();
-        // 評価コメント読み出し
-        $comments = Comment::where('shop_id', $id)->get();
-
         return view('shop.detail',[
             'shop'=>$item,
-            'after_reservation'=> isset($reserveDate),
-            'reserved_at'=> $reserveDate->reserved_at ?? '',
-            'comments'=>$comments,
-            'iscomment'=>$iscomment,
         ]);
     }
 }
