@@ -136,7 +136,7 @@
     </div>
   </section>
   <section class="auxiliary">
-    @if(isset($after_reservation))
+    @if($after_reservation)
     <div class="my_evaluation">
       <h3>前回、{{$reserved_at}}に予約しました。</h3>
       @if(empty($iscomment))

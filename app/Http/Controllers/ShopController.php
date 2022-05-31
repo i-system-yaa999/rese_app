@@ -135,12 +135,12 @@ class ShopController extends Controller
         // 評価済みか
         $iscomment = Comment:: where('user_id', Auth::user()->id)->where('shop_id', $id)->first();
         // 評価コメント読み出し
-        $comments=Comment::all();
+        $comments = Comment::where('shop_id', $id)->get();
 
         return view('shop.detail',[
             'shop'=>$item,
             'after_reservation'=> isset($reserveDate),
-            'reserved_at'=> $reserveDate->reserved_at,
+            'reserved_at'=> $reserveDate->reserved_at ?? '',
             'comments'=>$comments,
             'iscomment'=>$iscomment,
         ]);
