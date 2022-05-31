@@ -17,7 +17,7 @@
   @include('layouts.header')
   @include('layouts.forms')
   <section class="content_main">
-    <div class=detail_frame name="detail" id="detail">
+    <div class="detail_frame" name="detail" id="detail">
       <!-- 店舗詳細 -------------------------------------------------------------------------------- -->
       <div class="detail_data">
         <!-- 店舗情報 -->
@@ -61,7 +61,7 @@
       </div>
       <!-- ----- end ----- -->
     </div>
-    <div class=reserve_frame name="reserve" id="reserve">
+    <div class="reserve_frame" name="reserve" id="reserve">
       <!-- 予約確認 -------------------------------------------------------------------------------- -->
       <h3 class="reserve_head">予約</h3>
       <!--  -->
@@ -133,6 +133,42 @@
       </div>
       <!-- ----- end ----- -->
 
+    </div>
+  </section>
+  <section class="auxiliary">
+    @if(isset($after_reservation))
+    <div class="my_evaluation">
+      <h3>前回、{{$reserved_at}}に予約しました。</h3>
+      @if(empty($iscomment))
+      <input type="hidden" id="my_star" name="evaluation" form="comment" value="0">
+      <button id="my_star1" class="my_star" onclick="star_change(1)"></button>
+      <button id="my_star2" class="my_star" onclick="star_change(2)"></button>
+      <button id="my_star3" class="my_star" onclick="star_change(3)"></button>
+      <button id="my_star4" class="my_star" onclick="star_change(4)"></button>
+      <button id="my_star5" class="my_star" onclick="star_change(5)"></button>
+      <textarea name="comment" id="" class="my_comment" cols="100" rows="10" form="comment"></textarea>
+      <button type="submit" class="my_evaluation_send" form="comment" formaction="/comment/{{$shop->id}}">評価を投稿する</button>
+      @else
+      <p>評価コメント投稿済みです。</p>
+      @endif
+    </div>
+    @endif
+    <div class="evaluation">
+      <h3>評価（{{count($comments)}}件）</h3>
+      @if(count($comments)==0)
+      <p>評価はまだありません。</p>
+      @endif
+      {{--  --}}
+      <div class="evaluation_contents">
+        @foreach($comments as $comment)
+        <div class="evaluation_name">{{$comment->user->name}}</div>
+        <div class="evaluation_inner">
+          <img src="{{asset('image/star'.$comment->evaluation.'.png')}}" alt="" class="star">
+          <div class="evaluation_date">投稿日：{{$comment->created_at}}</div>
+        </div>
+        <div class="evaluation_comment">{{$comment->comment}}</div>
+        @endforeach
+      </div>
     </div>
   </section>
   @include('layouts.footer')
