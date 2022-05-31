@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\CommentController;
 
 
 Route::get('/',[ShopController::class,'index']);
@@ -43,5 +44,12 @@ Route::controller(ReserveController::class)->group(function () {
         Route::post('/reserve/{shop_id}', 'reserve');
         Route::put('/reserve/{reserve_id}', 'change');
         Route::delete('/reserve/{reserve_id}', 'delete');
+    // });
+});
+
+Route::controller(CommentController::class)->group(function () {
+    // Route::middleware('auth')->group(function () {
+    Route::post('/comment/{shop_id}', 'create');
+    Route::delete('/comment/{shop_id}', 'delete');
     // });
 });
