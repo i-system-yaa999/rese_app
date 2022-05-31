@@ -16,7 +16,5 @@
   <x-form name="reservecng" id="reservecng" action="/reserve" method="put"></x-form>
   <!-- 予約削除フォーム -->
   <x-form name="reservedel" id="reservedel" action="/reserve" method="delete"></x-form>
-  {{-- 評価投稿フォーム --}}
-  <x-form name="comment" id="comment" action="/comment" method="post"></x-form>
 
 </section>
