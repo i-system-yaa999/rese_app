@@ -51,6 +51,7 @@
       <div class="reserve_inner">
         <div class="reserve_itemhead">
           <h4>予約{{$loop->iteration+($reserves->currentPage()-1)*2}}</h4>
+          <a href="/reserve/qr/{{$reserve->id}}" class="reserve_qr">予約QRを表示する</a>
           <button id="reserve_cancel" class="reserve_del" onclick="myReserveCancel('{{$reserve->id}}')">予約をキャンセルする</button>
         </div>
         <!--  -->
@@ -77,6 +78,9 @@
               <td id="confirmNumber{{$reserve->id}}">{{$reserve->number}}人</td>
             </tr>
           </table>
+          {{-- <div class="qr">
+
+          </div> --}}
         </div>
         <!--  -->
         <button class="reserve_change toggle_open" id="reserve_change{{$reserve->id}}"

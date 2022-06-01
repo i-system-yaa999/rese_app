@@ -39,6 +39,7 @@
 }
 
 /* 予約状況ボタン関係 */
+.reserve_qr,
 .reserve_del,
 .reserve_change,
 .reserve_send{
@@ -52,6 +53,8 @@
   line-height: 2rem;
   text-align: center;
   display: block;
+  text-decoration: none;
+  color: black;
 }
 /* 予約変更画面 */
 .reserve_value {
@@ -85,7 +88,16 @@
   background-color: var(--lightblue);
   padding: 3%;
   border-radius: 7px;
+  display: flex;
 }
+/* .reserve_item{
+  width: 80%;
+}
+.qr{
+  width: 100px;
+  height: 100px;
+  background-color: white;
+} */
 
 .reserve_confirm table {
   text-align: left;
