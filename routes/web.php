@@ -44,6 +44,7 @@ Route::controller(ReserveController::class)->group(function () {
         Route::post('/reserve/{shop_id}', 'reserve');
         Route::put('/reserve/{reserve_id}', 'change');
         Route::delete('/reserve/{reserve_id}', 'delete');
+        Route::get('reserve/qr/{reserve_id}', 'qr');
     // });
 });
 
