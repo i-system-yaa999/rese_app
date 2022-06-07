@@ -6,6 +6,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
+use Illuminate\Http\Request;
 
 
 Route::get('/',[ShopController::class,'index']);
@@ -53,4 +54,24 @@ Route::controller(CommentController::class)->group(function () {
     Route::post('/comment/{shop_id}', 'create');
     Route::delete('/comment/{shop_id}', 'delete');
     // });
+});
+
+Route::get('/admin',function(Request $request){
+    return view('admin/admin')->with([
+        'tab_item'=> $request->input('tab_item'),
+    ]);
+});
+Route::get('/admin/login',function(){
+    return view('admin/login');
+});
+Route::get('/owner/login', function () {
+    return view('owner/login');
+});
+Route::post('/admin/login', function () {
+    return view('admin/admin')->with([
+        'tab_item' => 0,
+    ]);
+});
+Route::post('/owner/login', function () {
+    return view('owner/owner');
 });

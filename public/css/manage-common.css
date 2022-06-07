@@ -1,0 +1,359 @@
+/* -------------------------------------------------- */
+:root {
+
+  font-size: 100%;
+
+  /* --media_width:769px; */
+  --darkblue: #052AC2;
+  --middleblue: #2F5CFF;
+  --lightblue: #4C7EFF;
+
+}
+
+/* -------------------------------------------------- */
+.main_frame {
+  display: flex;
+}
+
+/* -------------------------------------------------- */
+.nav {
+  width: 100px;
+  height: 100vh;
+  background-color: var(--lightblue);
+  color: white;
+  font-size: 0.9rem;
+}
+
+.site_title {
+  text-decoration: none;
+  height: 50px;
+  line-height: 50px;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.nav_title {
+  font-size: 0.9rem;
+  font-weight: normal;
+  text-align: center;
+}
+
+.nav_content {
+  margin-top: 50px;
+  text-align: center;
+  line-height: 2rem;
+}
+
+.nav_content_item {}
+
+.nav_content_item:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* -------------------------------------------------- */
+
+
+
+/* -------------------------------------------------- */
+.content_frame {
+  width: 95vw;
+  height: 100vh;
+  /* background-color: beige; */
+  background-color: #e0f0f0;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  /* columns: 10 auto; */
+}
+
+/*ラジオボタンを全て消す*/
+.tabs input[name="tab_item"] {
+  display: none;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked+.tab_item {
+  border-bottom: 3px solid var(--middleblue);
+  opacity: 0.75;
+  color: black;
+  font-weight: bold;
+}
+
+/*タブのスタイル*/
+.tab_item {
+  display: block;
+  width: 100%;
+  height: 50px;
+  line-height: 60px;
+  background-color: #ececec;
+  border-bottom: 3px solid #d9d9d9;
+  font-size: 1rem;
+  text-align: center;
+  color: #565656;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.tab_item:hover {
+  border-bottom: 3px solid var(--middleblue);
+  opacity: 0.75;
+  font-weight: bold;
+}
+
+/* -------------------------------------------------- */
+.tab_content {
+  /* grid-column: 1 / 11; */
+  background-color: #e0f0f0;
+}
+
+.tab_content_gide {
+  line-height: 1.8rem;
+  padding: 20px;
+}
+
+
+
+/* -------------------------------------------------- */
+.tbl-head {
+  align-items: center;
+  height: 3rem;
+  background-color: var(--middleblue);
+  color: white;
+  column-gap: 5px;
+}
+
+.tbl-odd {
+  align-items: center;
+  height: 4rem;
+  background-color: #dde6ff;
+  font-size: 1em;
+  column-gap: 5px;
+  margin-right: 5px;
+}
+
+.tbl-even {
+  align-items: center;
+  height: 4rem;
+  background-color: #c4d4fe;
+  font-size: 1em;
+  column-gap: 5px;
+  margin-right: 5px;
+}
+
+.tbl-newitem {
+  align-items: center;
+  height: 4rem;
+  background-color: beige;
+  font-size: 1em;
+  column-gap: 5px;
+  margin-right: 5px;
+}
+
+.tbl-odd input,
+.tbl-even input,
+.tbl-newitem input {
+  width: 98%;
+  font-size: 1rem;
+}
+
+/* -------------------------------------------------- */
+:root {
+  --check: 24px;
+  --id: 36px;
+
+  --ownerid: 48px;
+  --userid: 48px;
+  --shopid: 48px;
+  --areaid: 48px;
+  --genreid: 48px;
+  --reserveid: 48px;
+
+  --ownername: 5fr;
+  --username: 5fr;
+  --shopname: 5fr;
+  --areaname: 5fr;
+  --genrename: 5fr;
+
+  --email: 20fr;
+  --password: 12fr;
+
+  --comment: 20fr;
+  --image: 4fr;
+  --likecount: 48px;
+  --reservenum: 36px;
+  --evaluation: 24px;
+
+  --reserved: 180px;
+  --created: 180px;
+  --modify: 48px;
+  --delete: 48px;
+  --emailsend: 96px;
+  --detail: 84px;
+}
+
+.tbl-owner {
+  display: grid;
+  /* grid-template-columns: 24px 24px 5fr 20fr 12fr 48px 10fr 180px 48px 48px 96px 84px; */
+  grid-template-columns: var(--check) var(--id) minmax(150px, var(--ownername)) var(--email) var(--password) var(--shopid) var(--shopname) var(--created) var(--modify) var(--delete) var(--emailsend) var(--detail);
+  grid-template-areas: check id ownername email password shopid shopname created modify delete emailsend detail;
+}
+
+.tbl-user {
+  display: grid;
+  /* grid-template-columns: 24px 24px 5fr 20fr 12fr 180px 48px 48px 96px; */
+  grid-template-columns: var(--check) var(--id) minmax(150px, var(--username)) var(--email) var(--password) var(--created) var(--modify) var(--delete) var(--emailsend);
+  grid-template-areas: check id username email password created modify delete emailsend;
+}
+
+.tbl-shop {
+  display: grid;
+  /* grid-template-columns: 24px 24px 10fr 48px 5fr 48px 5fr 20fr 4fr 48px 180px 48px 48px; */
+  grid-template-columns: var(--check) var(--id) minmax(150px, var(--shopname)) var(--areaid) var(--areaname) var(--genreid) var(--genrename) var(--comment) var(--image) var(--likecount) var(--created) var(--modify) var(--delete) var(--detail);
+  grid-template-areas: check id shopname areaid areaname genreid genrename comment image likecount created modify delete detail;
+}
+
+.tbl-area {
+  display: grid;
+  /* grid-template-columns: 24px 24px 5fr 180px 48px 48px; */
+  grid-template-columns: var(--check) var(--id) var(--areaname) var(--created) var(--modify) var(--delete);
+  grid-template-areas: check id areaname created modify delete;
+}
+
+.tbl-genre {
+  display: grid;
+  /* grid-template-columns: 24px 24px 5fr 180px 48px 48px; */
+  grid-template-columns: var(--check) var(--id) var(--genrename) var(--created) var(--modify) var(--delete);
+  grid-template-areas: check id genrename created modify delete;
+}
+
+.tbl-reserve {
+  display: grid;
+  /* grid-template-columns: 24px 24px 48px 5fr 48px 5fr 180px 36px 180px 48px 48px 96px; */
+  grid-template-columns: var(--check) var(--id) var(--userid) var(--username) var(--shopid) var(--shopname) var(--reserved) var(--reservenum) var(--created) var(--modify) var(--delete) var(--emailsend);
+  grid-template-areas: check id userid username shopid shopname reserved reservenum created modify delete emailsend;
+}
+
+.tbl-like {
+  display: grid;
+  /* grid-template-columns: 24px 24px 48px 5fr 48px 5fr 180px 48px 48px; */
+  grid-template-columns: var(--check) var(--id) var(--userid) var(--username) var(--shopid) var(--shopname) var(--created) var(--modify) var(--delete);
+  grid-template-areas: check id userid username shopid shopname created modify delete;
+}
+
+.tbl-comment {
+  display: grid;
+  /* grid-template-columns: 24px 24px 48px 5fr 48px 5fr 24px 10fr 180px 48px 48px; */
+  grid-template-columns: var(--check) var(--id) var(--userid) var(--username) var(--shopid) var(--shopname) var(--evaluation) var(--comment) var(--created) var(--modify) var(--delete);
+  grid-template-areas: check id userid username shopid shopname evaluation comment created modify delete;
+}
+
+/* -------------------------------------------------- */
+.inputbox {
+  padding: 3px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  /* appearance: none; */
+  /* outline: none; */
+}
+
+.selectbox {
+  padding: 3px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* -------------------------------------------------- */
+.btn {
+  text-align: center;
+  background-color: #fff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.4s;
+  outline: none;
+}
+
+/* -------------------------------------------------- */
+.btn-search {
+  border: 1px solid black;
+  color: black;
+  padding: 2px 15px;
+  margin: 0 10px;
+}
+
+.btn-search:hover {
+  background-color: black;
+  border-color: black;
+  color: #fff;
+}
+
+/* -------------------------------------------------- */
+.btn-modify {
+  border: 1px solid var(--middleblue);
+  color: var(--middleblue);
+}
+
+.btn-modify:hover {
+  background-color: var(--middleblue);
+  border-color: var(--middleblue);
+  color: #fff;
+}
+
+/* -------------------------------------------------- */
+.btn-delete {
+  border: 1px solid #ff3c3c;
+  color: #ff3c3c;
+}
+
+.btn-delete:hover {
+  background-color: #ff3c3c;
+  border-color: #ff3c3c;
+  color: #fff;
+}
+
+/* -------------------------------------------------- */
+.btn-mailsend {
+  border: 1px solid gray;
+  color: black;
+}
+
+.btn-mailsend:hover {
+  background-color: gray;
+  border-color: black;
+  color: #fff;
+}
+
+/* -------------------------------------------------- */
+.btn-detail {
+  border: 1px solid gray;
+  color: black;
+}
+
+.btn-detail:hover {
+  background-color: gray;
+  border-color: black;
+  color: #fff;
+}
+
+/* -------------------------------------------------- */
+.serchinput {
+  line-height: 1.2rem;
+  height: 1.5rem;
+  border-radius: 5px;
+}
+
+.searchlabel {
+  margin: 0 10px;
+}
+
+#content0{
+  padding: 50px;
+}
