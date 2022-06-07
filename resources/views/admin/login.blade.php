@@ -11,11 +11,32 @@
 </head>
 
 <body>
-  @include('layouts.header')
   <section class="content_main">
-    <p>管理者ログイン</p>
+    <div class="message_box" name="" id="">
+      <div class="message_title">
+        <p>管理者ログイン</p>
+      </div>
+  
+      <form class="message_form" method="POST" action="/admin/login">
+        @csrf
+        <div>
+          {{-- <label for="email">メールアドレス</label> --}}
+          <input type="email" class="input_disp" name="email" value="{{old('email')}}" placeholder="メールアドレス">
+          <input type="text" class="error_disp" name="error_disp" value="{{$errors->first('email')}}" disabled="disabled">
+        </div>
+        <div>
+          {{-- <label for="password">パスワード</label> --}}
+          <input type="password" class="input_disp" name="password" placeholder="password">
+          <input type="text" class="error_disp" name="error_disp" value="{{$errors->first('password')}}"
+            disabled="disabled">
+        </div>
+        <div>
+          <button type="submit">ログイン</button>
+        </div>
+      </form>
+    </div>
+  
   </section>
-  @include('layouts.footer')
 </body>
 
 </html>
