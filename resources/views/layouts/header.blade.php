@@ -13,7 +13,20 @@
     <ul>
       <li class="media_onry"><a href="/">トップページ</a></li>
       @if (Auth::check())
+      {{-- システム管理者権限のみに表示される --}}
+      @can('admin-onry')
+      <li><a href="/admin/admin">システム管理</a></li>
+      <li><a href="/owner/owner">店舗管理</a></li>
       <li><a href="/user/mypage">マイページ</a></li>
+      {{-- 店舗代表者以上に表示される --}}
+      @elsecan('owner-higher')
+      <li><a href="/owner/owner">店舗管理</a></li>
+      <li><a href="/user/mypage">マイページ</a></li>
+      {{-- 一般権限以上に表示される --}}
+      @elsecan('user-higher')
+      <li><a href="/user/mypage">マイページ</a></li>
+      @endcan
+      {{-- <li><a href="/user/mypage">マイページ</a></li> --}}
       <li><a href="/user/logout">ログアウト</a></li>
       @else
       <li><a href="{{route('register')}}">新規登録</a></li>
