@@ -61,17 +61,18 @@ Route::get('/admin',function(Request $request){
         'tab_item'=> $request->input('tab_item'),
     ]);
 });
-Route::get('/admin/login',function(){
-    return view('admin/login');
-});
-Route::get('/owner/login', function () {
-    return view('owner/login');
-});
-Route::post('/admin/login', function () {
+
+// Route::get('/admin/login',function(){
+//     return view('admin/login');
+// });
+// Route::get('/owner/login', function () {
+//     return view('owner/login');
+// });
+Route::get('/admin/admin', function () {
     return view('admin/admin')->with([
         'tab_item' => 0,
     ]);
 });
-Route::post('/owner/login', function () {
+Route::get('/owner/owner', function () {
     return view('owner/owner');
 });
