@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LikeRequest;
 use App\Models\Like;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
-    public function create($shop_id)
+    public function create(Request $request, $shop_id)
     {
         Like::create([
             'user_id'=>Auth::user()->id,

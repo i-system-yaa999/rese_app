@@ -2,111 +2,125 @@
   <div class="tab_content_gide">
     <label for="search_reserve" class="searchlabel">予約年月で検索</label>
     <input type="month" name="search_reserve" id="search_reserve" class="serchinput"><button class="btn btn-search">検索</button>
-    <div>100件の「予約」が見つかりました。</div>
-    <div>全100件中 1～10件</div>
+    <div>{{$reserves->total()}}件の「予約」が見つかりました。</div>
+    {{-- ページネーション --}}
+    <div class="page_info">
+      <div class="page_counts">
+        全{{$reserves->total()}}件中
+        @if($reserves->total() > 0)
+        {{$reserves->firstItem()}}～{{$reserves->lastItem()}}件
+        @endif
+      </div>
+      @if($reserves->total() > 0)
+      {{$reserves->appends(request()->input())->links('pagination::bootstrap-4')}}
+      @endif
+    </div>
   </div>
   <div class="table-reserve_frame">
     <div class="tbl-reserve tbl-head">
       <div></div>
-      <div>ID</div>
-      <div>予約者ID</div>
+      <div class="item-center item-id">ID</div>
+      {{-- <div class="item-id">予約者ID</div> --}}
       <div>予約者名</div>
-      <div>店舗ID</div>
+      <div>E-Mail</div>
+      {{-- <div class="item-id">店舗ID</div> --}}
+      <div></div>
       <div>店舗名</div>
       <div>予約日時</div>
       <div>人数</div>
-      <div>作成日</div>
+      <div>作成日<br>------<br>更新日</div>
       <div></div>
       <div></div>
       <div></div>
     </div>
-    <div class="tbl-reserve tbl-odd">
-      <div><input type="checkbox"></div>
-      <div>1</div>
-      <div>1</div>
-      <div>
-        <select name="user_name" id="user_name" class="selectbox" onchange="" form="">
-          <option value="あそうたろう">あそうたろう</option>
-        </select>
+    @foreach($reserves as $reserve)
+    @if($loop->iteration % 2)
+      @if($create_item_id==$reserve->id)
+    <div class="tbl-reserve tbl-odd tbl-newitem" id="tbl-item{{$reserve->id}}">
+      @else
+    <div class="tbl-reserve tbl-odd" id="tbl-item{{$reserve->id}}">
+      @endif
+    @else
+    <div class="tbl-reserve tbl-even" id="tbl-item{{$reserve->id}}">
+    @endif
+      {{-- チェックボックス --}}
+      <div class="item-center item-checkbox">
+        <input type="checkbox" name="" id="">
       </div>
-      <div>9999</div>
-      <div>
-        <select name="shop_name" id="shop_name" class="selectbox" onchange="" form="">
-          <option value="未登録">--未登録--</option>
+      {{-- id --}}
+      <div class="item-center item-id" name="reserve_id{{$reserve->id}}" id="reserve_id{{$reserve->id}}">{{$reserve->id}}</div>
+      {{-- ユーザー名 --}}
+      <div class="item-center item-user-name">
+        {{-- <input type="hidden" name="" class="inputbox" value="{{$reserve->user->id}}"> --}}
+        <select name="reserve_user_id{{$reserve->id}}" id="reserve_user_id{{$reserve->id}}" class="selectbox" form="admincng" onchange="unregisteredReserve({{$reserve->id}})">
+          <option value="{{$reserve->user->id}}">{{$reserve->user->id.'：'.$reserve->user->name}}</option>
+          @foreach($allusers as $user)
+          <option value="{{$user->id}}" @if($reserve->user->id == $user->id) selected @endif>{{$user->id.'：'.$user->name}}</option>
+          @endforeach
         </select>
+        @if(($reserve->id==old('reserve_id')) && ($errors->has('reserve_user_id')))
+        <div class="error_disp">{{$errors->first('reserve_user_id')}}</div>
+        @endif
       </div>
-      <div>2022-05-31 15:15:15</div>
-      <div><input type="number" class="inputbox" value="12"></div>
-      <div>2033-33-33 13:13:13</div>
-      <div><button class="btn btn-modify">登録</button></div>
-      <div><button class="btn btn-delete">削除</button></div>
-      <div><button class="btn btn-mailsend">メール送信</button></div>
+      {{-- メール --}}
+      <div class="item-email">{{$reserve->user->email}}</div>
+      {{-- メール送信ボタン --}}
+      <div class="item-center item-mailsend"><button class="btn btn-mailsend">メール送信</button></div>
+      {{-- 店舗名 --}}
+      <div class="item-shop-name">
+        {{-- <input type="hidden" name="" class="inputbox" value="{{$reserve->shop->id}}"> --}}
+        <select name="reserve_shop_id{{$reserve->id}}" id="reserve_shop_id{{$reserve->id}}" class="selectbox" form="admincng" onchange="unregisteredReserve({{$reserve->id}})">
+          <option value="{{$reserve->shop->id}}">{{$reserve->shop->id.'：'.$reserve->shop->name}}</option>
+          @foreach($allshops as $shop)
+          <option value="{{$shop->id}}" @if($reserve->shop->id == $shop->id) selected @endif>{{$shop->id.'：'.$shop->name}}</option>
+          @endforeach
+        </select>
+        @if(($reserve->id==old('reserve_id')) && ($errors->has('reserve_shop_id')))
+        <div class="error_disp">{{$errors->first('reserve_shop_id')}}</div>
+        @endif
+      </div>
+      {{-- 予約日時 --}}
+      <div class="item-reserved">
+        <div>
+          <input type="date" name="reserve_date{{$reserve->id}}" id="reserve_date{{$reserve->id}}" class="inputbox inputdate" value="{{date('Y-m-d', strtotime($reserve->reserved_at))}}" form="admincng" onchange="unregisteredReserve({{$reserve->id}})">
+          @if(($reserve->id==old('reserve_id')) && ($errors->has('reserve_date')))
+          <div class="error_disp">{{$errors->first('reserve_date')}}</div>
+          @endif
+        </div>
+        <div>&nbsp;</div>
+        <div>
+          <input type="time" name="reserve_time{{$reserve->id}}" id="reserve_time{{$reserve->id}}" class="inputbox inputdate" value="{{date('H:i', strtotime($reserve->reserved_at))}}" form="admincng" onchange="unregisteredReserve({{$reserve->id}})">
+          @if(($reserve->id==old('reserve_id')) && ($errors->has('reserve_time')))
+          <div class="error_disp">{{$errors->first('reserve_time')}}</div>
+          @endif
+        </div>      
+      </div>
+      {{-- 予約人数 --}}
+      <div class="item-center item-number">
+        <select name="reserve_number{{$reserve->id}}" id="reserve_number{{$reserve->id}}" class="selectbox" form="admincng" onchange="unregisteredReserve({{$reserve->id}})">
+          <option value="{{$reserve->number}}">{{$reserve->number}}人</option>
+          @for($i=1;$i<100;$i++)
+          <option value="{{$i}}" @if($reserve->number == $i) selected @endif>{{$i}}人</option>
+          @endfor
+        </select>
+        @if(($reserve->id==old('reserve_id')) && ($errors->has('reserve_number')))
+        <div class="error_disp">{{$errors->first('reserve_number')}}</div>
+        @endif
+      </div>
+      {{-- 作成日/更新日 --}}
+      <div class="item-created">{{$reserve->created_at}}<span class="hr"></span>{{$reserve->updated_at}}</div>
+      {{-- 登録ボタン --}}
+      <div class="item-center item-modify">
+        {{-- <button class="btn btn-modify" type="submit" formaction="/admin?reserve_id={{$reserve->id}}" form="admincng">登録</button> --}}
+        <button class="btn btn-modify" type="submit" onclick="unregisteredReserveSend({{$reserve->id}})">登録</button>
+      </div>
+      {{-- 削除ボタン --}}
+      <div class="item-center item-delete">
+        <button class="btn btn-delete" type="submit" formaction="/admin?reserve_id={{$reserve->id}}" form="admindel">削除</button>
+      </div>
+      {{-- 終端 --}}
+      <div class="item-terminal"></div>
     </div>
-    <div class="tbl-reserve tbl-even">
-      <div><input type="checkbox"></div>
-      <div>2</div>
-      <div>3</div>
-      <div>
-        <select name="user_name" id="user_name" class="selectbox" onchange="" form="">
-          <option value="あそうさとこ">あそうさとこ</option>
-        </select>
-      </div>
-      <div>9999</div>
-      <div>
-        <select name="shop_name" id="shop_name" class="selectbox" onchange="" form="">
-          <option value="未登録">--未登録--</option>
-        </select>
-      </div>
-      <div>2021-01-11 15:15:15</div>
-      <div><input type="number" class="inputbox" value="12"></div>
-      <div>2033-33-33 13:13:13</div>
-      <div><button class="btn btn-modify">登録</button></div>
-      <div><button class="btn btn-delete">削除</button></div>
-      <div><button class="btn btn-mailsend">メール送信</button></div>
-    </div>
-    <div class="tbl-reserve tbl-odd">
-      <div><input type="checkbox"></div>
-      <div>3</div>
-      <div>5</div>
-      <div>
-        <select name="user_name" id="user_name" class="selectbox" onchange="" form="">
-          <option value="おののいもこ">おののいもこ</option>
-        </select>
-      </div>
-      <div>9999</div>
-      <div>
-        <select name="shop_name" id="shop_name" class="selectbox" onchange="" form="">
-          <option value="未登録">--未登録--</option>
-        </select>
-      </div>
-      <div>2022-02-22 12:12:12</div>
-      <div><input type="number" class="inputbox" value="12"></div>
-      <div>2033-33-33 13:13:13</div>
-      <div><button class="btn btn-modify">登録</button></div>
-      <div><button class="btn btn-delete">削除</button></div>
-      <div><button class="btn btn-mailsend">メール送信</button></div>
-    </div>
-    <div class="tbl-reserve tbl-even">
-      <div><input type="checkbox"></div>
-      <div>4</div>
-      <div>12</div>
-      <div>
-        <select name="user_name" id="user_name" class="selectbox" onchange="" form="">
-          <option value="きゃさりん">きゃさりん</option>
-        </select>
-      </div>
-      <div>9999</div>
-      <div>
-        <select name="shop_name" id="shop_name" class="selectbox" onchange="" form="">
-          <option value="未登録">--未登録--</option>
-        </select>
-      </div>
-      <div>2033-33-33 13:13:13</div>
-      <div><input type="number" class="inputbox" value="12"></div>
-      <div>2033-33-33 13:13:13</div>
-      <div><button class="btn btn-modify">登録</button></div>
-      <div><button class="btn btn-delete">削除</button></div>
-      <div><button class="btn btn-mailsend">メール送信</button></div>
-    </div>
+    @endforeach
   </div>
 </div>

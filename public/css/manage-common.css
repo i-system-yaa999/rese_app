@@ -20,36 +20,38 @@
   width: 100px;
   height: 100vh;
   background-color: var(--lightblue);
-  color: white;
   font-size: 0.9rem;
 }
-
 .site_title {
   text-decoration: none;
   height: 50px;
   line-height: 50px;
 }
-
 .title {
   text-align: center;
   font-size: 1.5rem;
   color: white;
 }
-
 .nav_title {
   font-size: 0.9rem;
   font-weight: normal;
   text-align: center;
+  color: white;
 }
-
 .nav_content {
   margin-top: 50px;
   text-align: center;
   line-height: 2rem;
 }
-
-.nav_content_item {}
-
+.nav_content_title{
+  color: white;
+}
+.nav_content_item {
+  text-decoration: none;
+  color: white;
+  background: none;
+  border: none;
+}
 .nav_content_item:hover {
   text-decoration: underline;
   cursor: pointer;
@@ -124,7 +126,7 @@
 /* -------------------------------------------------- */
 .tbl-head {
   align-items: center;
-  height: 3rem;
+  height: 4rem;
   background-color: var(--middleblue);
   color: white;
   column-gap: 5px;
@@ -132,29 +134,32 @@
 
 .tbl-odd {
   align-items: center;
-  height: 4rem;
+  height: 3.5rem;
   background-color: #dde6ff;
   font-size: 1em;
   column-gap: 5px;
   margin-right: 5px;
+  border: 1px solid #dde6ff;
 }
 
 .tbl-even {
   align-items: center;
-  height: 4rem;
+  height: 3.5rem;
   background-color: #c4d4fe;
   font-size: 1em;
   column-gap: 5px;
   margin-right: 5px;
+  border: 1px solid #c4d4fe;
 }
 
 .tbl-newitem {
   align-items: center;
-  height: 4rem;
+  height: 3.5rem;
   background-color: beige;
   font-size: 1em;
   column-gap: 5px;
   margin-right: 5px;
+  border: 1px solid #a6fbc4;
 }
 
 .tbl-odd input,
@@ -176,11 +181,11 @@
   --genreid: 48px;
   --reserveid: 48px;
 
-  --ownername: 5fr;
-  --username: 5fr;
-  --shopname: 5fr;
-  --areaname: 5fr;
-  --genrename: 5fr;
+  --ownername: 156px;
+  --username: 156px;
+  --shopname: 156px;
+  --areaname: 204px;
+  --genrename: 180px;
 
   --email: 20fr;
   --password: 12fr;
@@ -188,71 +193,84 @@
   --comment: 20fr;
   --image: 4fr;
   --likecount: 48px;
-  --reservenum: 36px;
-  --evaluation: 24px;
+  --reservenum: 60px;
+  --evaluation: 10rem;
 
-  --reserved: 180px;
+  --reserved: 240px;
   --created: 180px;
   --modify: 48px;
   --delete: 48px;
   --emailsend: 96px;
   --detail: 84px;
+
+  --dummy: 5fr;
+  --dummyend:10px;
 }
 
 .tbl-owner {
   display: grid;
   /* grid-template-columns: 24px 24px 5fr 20fr 12fr 48px 10fr 180px 48px 48px 96px 84px; */
-  grid-template-columns: var(--check) var(--id) minmax(150px, var(--ownername)) var(--email) var(--password) var(--shopid) var(--shopname) var(--created) var(--modify) var(--delete) var(--emailsend) var(--detail);
-  grid-template-areas: check id ownername email password shopid shopname created modify delete emailsend detail;
+  /* grid-template-columns: var(--check) var(--id) var(--userid) minmax(150px, var(--ownername)) var(--email) var(--emailsend) var(--password) var(--shopid) var(--shopname) var(--detail) var(--created) var(--modify) var(--delete);
+  grid-template-areas: check id userid ownername email emailsend password shopid shopname detail created modify delete; */
+  grid-template-columns: var(--check) var(--id) minmax(var(--ownername),5fr) var(--email) var(--emailsend) var(--password) minmax(var(--shopname),5fr) var(--detail) var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id userid ownername email emailsend password shopname detail created modify delete dummyend;
 }
 
 .tbl-user {
   display: grid;
   /* grid-template-columns: 24px 24px 5fr 20fr 12fr 180px 48px 48px 96px; */
-  grid-template-columns: var(--check) var(--id) minmax(150px, var(--username)) var(--email) var(--password) var(--created) var(--modify) var(--delete) var(--emailsend);
-  grid-template-areas: check id username email password created modify delete emailsend;
+  grid-template-columns: var(--check) var(--id) minmax(var(--username),5fr) var(--email) var(--emailsend) var(--password) var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id username email emailsend password created modify delete dummyend;
 }
 
 .tbl-shop {
   display: grid;
   /* grid-template-columns: 24px 24px 10fr 48px 5fr 48px 5fr 20fr 4fr 48px 180px 48px 48px; */
-  grid-template-columns: var(--check) var(--id) minmax(150px, var(--shopname)) var(--areaid) var(--areaname) var(--genreid) var(--genrename) var(--comment) var(--image) var(--likecount) var(--created) var(--modify) var(--delete) var(--detail);
-  grid-template-areas: check id shopname areaid areaname genreid genrename comment image likecount created modify delete detail;
+  /* grid-template-columns: var(--check) var(--id) minmax(150px, var(--shopname)) var(--areaid) var(--areaname) var(--genreid) var(--genrename) var(--comment) var(--image) var(--likecount) var(--detail) var(--created) var(--modify) var(--delete);
+  grid-template-areas: check id shopname areaid areaname genreid genrename comment image likecount detail created modify delete; */
+  grid-template-columns: var(--check) var(--id) minmax(var(--shopname),5fr) var(--areaname) var(--genrename) var(--comment) var(--image) var(--likecount) var(--detail) var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id shopname areaname genrename comment image likecount detail created modify delete dummyend;
 }
 
 .tbl-area {
   display: grid;
   /* grid-template-columns: 24px 24px 5fr 180px 48px 48px; */
-  grid-template-columns: var(--check) var(--id) var(--areaname) var(--created) var(--modify) var(--delete);
-  grid-template-areas: check id areaname created modify delete;
+  grid-template-columns: var(--check) var(--id) var(--areaname) 1fr var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id areaname dummy created modify delete dummyend;
 }
 
 .tbl-genre {
   display: grid;
   /* grid-template-columns: 24px 24px 5fr 180px 48px 48px; */
-  grid-template-columns: var(--check) var(--id) var(--genrename) var(--created) var(--modify) var(--delete);
-  grid-template-areas: check id genrename created modify delete;
+  grid-template-columns: var(--check) var(--id) var(--genrename) 1fr var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id genrename dummy created modify delete dummyend;
 }
 
 .tbl-reserve {
   display: grid;
   /* grid-template-columns: 24px 24px 48px 5fr 48px 5fr 180px 36px 180px 48px 48px 96px; */
-  grid-template-columns: var(--check) var(--id) var(--userid) var(--username) var(--shopid) var(--shopname) var(--reserved) var(--reservenum) var(--created) var(--modify) var(--delete) var(--emailsend);
-  grid-template-areas: check id userid username shopid shopname reserved reservenum created modify delete emailsend;
+  /* grid-template-columns: var(--check) var(--id) var(--userid) var(--username) var(--emailsend) var(--shopid) var(--shopname) var(--reserved) var(--reservenum) var(--created) var(--modify) var(--delete);
+  grid-template-areas: check id userid username emailsend shopid shopname reserved reservenum created modify delete; */
+  grid-template-columns: var(--check) var(--id) minmax(var(--username),5fr) var(--email) var(--emailsend) minmax(var(--shopname), 5fr) minmax(var(--reserved),7fr) var(--reservenum) var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id username emailsend shopname reserved reservenum created modify delete dummyend;
 }
 
 .tbl-like {
   display: grid;
   /* grid-template-columns: 24px 24px 48px 5fr 48px 5fr 180px 48px 48px; */
-  grid-template-columns: var(--check) var(--id) var(--userid) var(--username) var(--shopid) var(--shopname) var(--created) var(--modify) var(--delete);
-  grid-template-areas: check id userid username shopid shopname created modify delete;
+  /* grid-template-columns: var(--check) var(--id) var(--userid) var(--username) var(--shopid) var(--shopname) var(--created) var(--modify) var(--delete);
+  grid-template-areas: check id userid username shopid shopname created modify delete; */
+  grid-template-columns: var(--check) var(--id) minmax(var(--username),5fr) minmax(var(--shopname), 5fr) var(--dummy) var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id username shopname dummy created modify delete dummyend;
 }
 
 .tbl-comment {
   display: grid;
   /* grid-template-columns: 24px 24px 48px 5fr 48px 5fr 24px 10fr 180px 48px 48px; */
-  grid-template-columns: var(--check) var(--id) var(--userid) var(--username) var(--shopid) var(--shopname) var(--evaluation) var(--comment) var(--created) var(--modify) var(--delete);
-  grid-template-areas: check id userid username shopid shopname evaluation comment created modify delete;
+  /* grid-template-columns: var(--check) var(--id) var(--userid) var(--username) var(--shopid) var(--shopname) var(--evaluation) var(--comment) var(--created) var(--modify) var(--delete);
+  grid-template-areas: check id userid username shopid shopname evaluation comment created modify delete; */
+  grid-template-columns: var(--check) var(--id) minmax(var(--username),5fr) minmax(var(--shopname), 5fr) var(--evaluation) var(--comment) var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id username shopname evaluation comment created modify delete dummyend;
 }
 
 /* -------------------------------------------------- */
@@ -260,16 +278,21 @@
   padding: 3px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
   /* appearance: none; */
   /* outline: none; */
 }
-
 .selectbox {
   padding: 3px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
 }
-
+.inputdate{
+  height: 20px;
+}
 /* -------------------------------------------------- */
 .btn {
   text-align: center;
@@ -342,7 +365,17 @@
   border-color: black;
   color: #fff;
 }
+/* -------------------------------------------------- */
+.btn-cancel {
+  border: 1px solid gray;
+  color: black;
+}
 
+.btn-cancel:hover {
+  background-color: gray;
+  border-color: black;
+  color: #fff;
+}
 /* -------------------------------------------------- */
 .serchinput {
   line-height: 1.2rem;
@@ -353,7 +386,106 @@
 .searchlabel {
   margin: 0 10px;
 }
-
+.item-center{
+  text-align: center;
+}
+.item-reserved{
+  display: flex;
+}
+.hr{
+  display: block;
+  width: 11rem;
+  height: 3px;
+  border-top: 1px solid black;
+}
 #content0{
   padding: 50px;
+}
+
+.my_star {
+  border: 0px;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  margin: 0 -4px;
+  background-image: url(/image/star_off.png);
+  background-size: contain;
+  background-color: white;
+}
+.star_on {
+  background-image: url(/image/star_on.png);
+}
+/* -------------------------------------------------- */
+/* ページネーション */
+/* -------------------------------------------------- */
+.page_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: right;
+  margin: 10px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+}
+.pagination .page-item {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  text-align: center;
+  border: 1px solid gray;
+}
+.pagination .active {
+  background-color: var(--middleblue);
+  color: white;
+}
+@media(max-width:769px) {
+  .page_info {
+    display: block;
+  }
+}
+
+.msg_window{
+  display: none;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  border: 2px solid black;
+  background-color: white;
+  text-align: center;
+}
+.msg_window_title{
+  /* text-align: center; */
+  background-color: var(--middleblue);
+  color: white;
+  padding: 5px 0;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+.msg_window_message{
+  line-height: 2rem;
+  margin: 0 20px;
+}
+.msg_window_button{
+  /* text-align: center; */
+  margin: 5px 0;
+}
+
+
+/* バリデーションエラー */
+.error_disp {
+  color: red;
+  text-align: center;
+}
+
+/* バリデーションエラー(タグ) */
+.has-error {
+  border-color: red;
+  background-color: rgb(253, 152, 152);
 }

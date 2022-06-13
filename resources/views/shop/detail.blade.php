@@ -140,12 +140,12 @@
     <div class="my_evaluation">
       <h3>前回、{{$reserved_at}}に予約しました。</h3>
       @if(empty($iscomment))
-      <input type="hidden" id="my_star" name="evaluation" form="comment" value="0">
-      <button id="my_star1" class="my_star" onclick="star_change(1)"></button>
-      <button id="my_star2" class="my_star" onclick="star_change(2)"></button>
-      <button id="my_star3" class="my_star" onclick="star_change(3)"></button>
-      <button id="my_star4" class="my_star" onclick="star_change(4)"></button>
-      <button id="my_star5" class="my_star" onclick="star_change(5)"></button>
+      <input type="hidden" id="my_star{{$shop->id}}" name="evaluation" form="comment" value="0">
+      <button id="my_star1{{$shop->id}}" class="my_star" onclick="star_change(1,{{$shop->id}})"></button>
+      <button id="my_star2{{$shop->id}}" class="my_star" onclick="star_change(2,{{$shop->id}})"></button>
+      <button id="my_star3{{$shop->id}}" class="my_star" onclick="star_change(3,{{$shop->id}})"></button>
+      <button id="my_star4{{$shop->id}}" class="my_star" onclick="star_change(4,{{$shop->id}})"></button>
+      <button id="my_star5{{$shop->id}}" class="my_star" onclick="star_change(5,{{$shop->id}})"></button>
       <textarea name="comment" id="" class="my_comment" cols="100" rows="10" form="comment"></textarea>
       <button type="submit" class="my_evaluation_send" form="comment" formaction="/comment/{{$shop->id}}">評価を投稿する</button>
       @else

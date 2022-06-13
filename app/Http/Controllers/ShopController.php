@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ShopRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
 use App\Models\Area;
@@ -77,27 +78,27 @@ class ShopController extends Controller
         $likes = Like::all();
         $names = null;
         switch ($tab) {
-                // 全て
+            // 全て
             case 0:
                 $ret = 'search_all';
                 // $shops = Shop::orderBy('created_at', 'desc')->Paginate(8, ['*'], 'shopspage');
                 $shops = Shop::orderBy('created_at', 'desc')->get();
                 break;
-                // エリア検索
+            // エリア検索
             case 1:
                 $ret = 'search_area';
                 $areas = Area::all();
                 $shops = Shop::where('area_id', $request->input('selected_area'))->Paginate(8, ['*'], 'areaspage');
                 // $shops = Shop::where('area_id', $request->input('selected_area'))->get();
                 break;
-                // ジャンル検索
+            // ジャンル検索
             case 2:
                 $ret = 'search_genre';
                 $genres = Genre::all();
                 $shops = Shop::where('genre_id', $request->input('selected_genre'))->Paginate(8, ['*'], 'genrespage');
                 // $shops = Shop::where('genre_id', $request->input('selected_genre'))->get();
                 break;
-                // 店名検索
+            // 店名検索
             case 3:
                 $ret = 'search_name';
                 $names = true;
@@ -130,10 +131,12 @@ class ShopController extends Controller
         // 詳細表示用データ
         $item=Shop::find($id);
 
+        if(Auth::user()){
         // 予約済みか
         $reserveDate = Reserve::where('user_id', Auth::user()->id)->where('shop_id', $id)->where('reserved_at','<=',date('Y-m-d H:i:s'))->first();
         // 評価済みか
         $iscomment = Comment:: where('user_id', Auth::user()->id)->where('shop_id', $id)->first();
+        };
         // 評価コメント読み出し
         $comments = Comment::where('shop_id', $id)->get();
 
@@ -141,8 +144,14 @@ class ShopController extends Controller
             'shop'=>$item,
             'after_reservation'=> isset($reserveDate),
             'reserved_at'=> $reserveDate->reserved_at ?? '',
-            'comments'=>$comments,
-            'iscomment'=>$iscomment,
+            'comments'=> $comments,
+            'iscomment'=> $iscomment ?? '',
         ]);
+    }
+    public function create(Request $request)
+    {
+    }
+    public function delete(Request $request)
+    {
     }
 }

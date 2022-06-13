@@ -15,12 +15,12 @@
       @if (Auth::check())
       {{-- システム管理者権限のみに表示される --}}
       @can('admin-onry')
-      <li><a href="/admin/admin">システム管理</a></li>
-      <li><a href="/owner/owner">店舗管理</a></li>
+      <li><a href="/admin">システム管理</a></li>
+      <li><a href="/owner">店舗管理</a></li>
       <li><a href="/user/mypage">マイページ</a></li>
       {{-- 店舗代表者以上に表示される --}}
       @elsecan('owner-higher')
-      <li><a href="/owner/owner">店舗管理</a></li>
+      <li><a href="/owner">店舗管理</a></li>
       <li><a href="/user/mypage">マイページ</a></li>
       {{-- 一般権限以上に表示される --}}
       @elsecan('user-higher')
