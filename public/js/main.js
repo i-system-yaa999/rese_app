@@ -91,12 +91,12 @@ function myReserveCancel(id) {
 
 
 /* -------------------------------------------------- */
-  function star_change(number){
-    let my_star1=document.getElementById('my_star1');
-    let my_star2=document.getElementById('my_star2');
-    let my_star3=document.getElementById('my_star3');
-    let my_star4=document.getElementById('my_star4');
-    let my_star5=document.getElementById('my_star5');
+  function star_change(number,id){
+    let my_star1=document.getElementById('my_star1' + id);
+    let my_star2=document.getElementById('my_star2' + id);
+    let my_star3=document.getElementById('my_star3' + id);
+    let my_star4=document.getElementById('my_star4' + id);
+    let my_star5=document.getElementById('my_star5' + id);
     let my_star = 0;
     switch (number){
       case 1:
@@ -168,6 +168,6 @@ function myReserveCancel(id) {
         }
         break;
     }
-    document.getElementById('my_star').value = my_star;
+    document.getElementById('my_star' + id).value = my_star;
     // alert(my_star);
   }

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ReserveRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reserve;
-use App\Http\Requests\ReserveRequest;
 use App\Models\Shop;
 // use Milon\Barcode\Facades\DNS1DFacade;
 use Milon\Barcode\Facades\DNS2DFacade;
@@ -13,7 +13,7 @@ use Milon\Barcode\Facades\DNS2DFacade;
 class ReserveController extends Controller
 {
     // 予約登録
-    public function reserve(ReserveRequest $request,$shop_id)
+    public function create(ReserveRequest $request,$shop_id)
     {
         $shop_name = Shop::find($shop_id)->name;
         $shop_area = Shop::find($shop_id)->area->name;
@@ -58,7 +58,7 @@ class ReserveController extends Controller
         return back();
     }
     // 予約変更
-    public function change(ReserveRequest $request,$id)
+    public function update(ReserveRequest $request,$id)
     {
         $shop_name = Reserve::find($id)->shop->name;
         $shop_area = Reserve::find($id)->shop->area->name;

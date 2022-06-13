@@ -18,7 +18,8 @@
       <div class="message_title">
         <p>新規登録</p>
       </div>
-      <form class="message_form" method="POST" action="{{route('register')}}">
+      {{-- <form class="message_form" method="POST" action="{{route('register')}}"> --}}
+      <form class="message_form" method="POST" action="/register">
         @csrf
         <div>
           <!-- <label for="name">ユーザ名</label> -->
