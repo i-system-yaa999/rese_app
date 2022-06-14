@@ -29,6 +29,12 @@
   <!-- 管理者 情報削除フォーム -->
   <x-form name="admindel" id="admindel" action="/admin" method="delete"></x-form>
 
+  <!-- 店舗代表者 情報登録フォーム -->
+  <x-form name="owner" id="owner" action="/owner" method="post"></x-form>
+  <!-- 店舗代表者 情報変更フォーム -->
+  <x-form name="ownercng" id="ownercng" action="/owner" method="put"></x-form>
+  <!-- 店舗代表者 情報削除フォーム -->
+  <x-form name="ownerdel" id="ownerdel" action="/owner" method="delete"></x-form>
 </section>
 <style>
   /* -------------------------------------------------- */

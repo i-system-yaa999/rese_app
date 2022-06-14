@@ -33,7 +33,7 @@ class ShopController extends Controller
             case 0:
                 $tab = 0;
                 $ret = 'search_all';
-                $shops = Shop::orderBy('created_at', 'desc')->Paginate(8, ['*'], 'shopspage');
+                $shops = Shop::where('name','!=','')->orderBy('id', 'desc')->Paginate(8, ['*'], 'shopspage');
                 $likes = Like::all();
                 break;
             // エリア検索
@@ -82,7 +82,7 @@ class ShopController extends Controller
             case 0:
                 $ret = 'search_all';
                 // $shops = Shop::orderBy('created_at', 'desc')->Paginate(8, ['*'], 'shopspage');
-                $shops = Shop::orderBy('created_at', 'desc')->get();
+                $shops = Shop::where('name', '!=', '')->orderBy('id', 'desc')->get();
                 break;
             // エリア検索
             case 1:

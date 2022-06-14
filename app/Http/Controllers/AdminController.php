@@ -250,6 +250,7 @@ class AdminController extends Controller
                 'user_id' => $request->input('like_user_id'),
                 'shop_id' => $request->input('like_shop_id'),
             ]);
+            Shop::find($request->like_shop_id)->increment('likes_count');
         }
         // 評価 情報 登録
         if (isset($request->comment_id)) {
