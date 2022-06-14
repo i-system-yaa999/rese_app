@@ -15,15 +15,6 @@
       {{$users->appends(request()->input())->links('pagination::bootstrap-4')}}
       @endif
     </div>
-    <div class="error_disp">
-      @if (count($errors) > 0)
-      <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{$error}}</li>
-        @endforeach
-      </ul>
-      @endif
-    </div>
   </div>
   <div class="table-user_frame">
     <div class="tbl-user tbl-head">

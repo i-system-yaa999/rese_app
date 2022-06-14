@@ -101,10 +101,45 @@
       </div>
       {{-- 店舗イメージurl --}}
       <div class="item-url">
-        <input type="text" name="shop_image_url{{$shop->id}}" id="shop_image_url{{$shop->id}}" class="inputbox" value="{{$shop->image_url}}" form="admincng" onchange="unregisteredShop({{$shop->id}})">
+        {{-- <input type="text" name="shop_image_url{{$shop->id}}" id="shop_image_url{{$shop->id}}" class="inputbox" value="{{$shop->image_url}}" form="admincng" onchange="unregisteredShop({{$shop->id}})">
         @if(($shop->id==old('shop_id')) && ($errors->has('shop_image_url')))
         <div class="error_disp">{{$errors->first('shop_image_url')}}</div>
+        @endif --}}
+
+
+        {{-- 店舗画像URL --}}
+        {{-- <label for="shop_image_url{{$shop->id}}">店舗イメージ画像</label> --}}
+        <select name="shop_image_url{{$shop->id}}" id="shop_image_url{{$shop->id}}" class="selectbox" form="ownercng"
+          onchange="unregisteredShop2({{$shop->id}})">
+          <option value="image/italian.jpg" @if($shop->image_url == "image/italian.jpg") selected @endif>1 :
+            image/italian.jpg</option>
+          <option value="image/izakaya.jpg" @if($shop->image_url == "image/izakaya.jpg") selected @endif>2 :
+            image/izakaya.jpg</option>
+          <option value="image/ramen.jpg" @if($shop->image_url == "image/ramen.jpg") selected @endif>3 : image/ramen.jpg
+          </option>
+          <option value="image/sushi.jpg" @if($shop->image_url == "image/sushi.jpg") selected @endif>4 : image/sushi.jpg
+          </option>
+          <option value="image/yakiniku.jpg" @if($shop->image_url == "image/yakiniku.jpg") selected @endif>5 :
+            image/yakiniku.jpg</option>
+          <option value="image/cyuuka.jpg" @if($shop->image_url == "image/cyuuka.jpg") selected @endif>6 : image/cyuuka.jpg
+          </option>
+          <option value="image/kissaten.jpg" @if($shop->image_url == "image/kissaten.jpg") selected @endif>7 :
+            image/kissaten.jpg</option>
+          <option value="image/familyrestaurant.jpg" @if($shop->image_url == "image/familyrestaurant.jpg") selected
+            @endif>8 : image/familyrestaurant.jpg</option>
+          <option value="image/coffee.jpg" @if($shop->image_url == "image/coffee.jpg") selected @endif>9 : image/coffee.jpg
+          </option>
+          <option value="image/curry.jpg" @if($shop->image_url == "image/curry.jpg") selected @endif>10 : image/curry.jpg
+          </option>
+          <option value="image/teisyoku.jpg" @if($shop->image_url == "image/teisyoku.jpg") selected @endif>11 :
+            image/teisyoku.jpg</option>
+          <option value="image/soba.jpg" @if($shop->image_url == "image/soba.jpg") selected @endif>12 : image/soba.jpg
+          </option>
+        </select>
+        @if(($shop->id==old('shop_id')) && $errors->has('shop_image_url'))
+        <div class="error_disp">{{$errors->first('shop_image_url')}}</div>
         @endif
+
       </div>
       {{-- お気に入りカウント --}}
       <div class="item-center item-likes-count">{{$shop->likes_count}}</div>

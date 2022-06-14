@@ -217,7 +217,7 @@
           </div>
           @endif
           <p>検索したいお店の名前を入力してください</p>
-          <label for="search_name"></label><input type="text" name="search_name" value="{{$search_name}}" form="search">
+          <label for="search_name"></label><input type="text" name="search_name" value="{{$search_name}}" form="search" required>
           <button class="content_search" type="submit" formaction="/shop/search" formmethod="get" form="search">検索</button>
         </div>
         <!--  -->

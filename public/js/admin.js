@@ -10,6 +10,10 @@ function itemModify(id){
   document.querySelector('#tbl-item'+id).classList.add('tbl-newitem');
 }
 /* -------------------------------------------------- */
+function itemModify2(id) {
+  document.querySelector('#modify-message'+id).classList.add('unsaved_message');
+}
+/* -------------------------------------------------- */
 function unregisteredOwner(id){
   this.itemModify(id);
 
@@ -117,6 +121,47 @@ function unregisteredShopSend(id) {
   form.action = "/admin";
   // form.method = 'put';
   this.unregisteredShop(id);
+
+  form.submit();
+}
+/* -------------------------------------------------- */
+function unregisteredShop2(id) {
+  this.itemModify2(id);
+
+  let newShopId = document.getElementById('shop_id' + id);
+  let newShopName = document.getElementById('shop_name' + id);
+  let newShopAreaId = document.getElementById('shop_area_id' + id);
+  // let newShopAreaName = document.getElementById('shop_area_name' + id);
+  let newShopGenreId = document.getElementById('shop_genre_id' + id);
+  // let newShopGenreName = document.getElementById('shop_genre_name' + id);
+  let newShopSummary = document.getElementById('shop_summary' + id);
+  let newShopImageURL = document.getElementById('shop_image_url' + id);
+
+  let sendShopId = document.getElementById('shop_id');
+  let sendShopName = document.getElementById('shop_name');
+  let sendShopAreaId = document.getElementById('shop_area_id');
+  // let sendShopAreaName = document.getElementById('shop_area_name');
+  let sendShopGenreId = document.getElementById('shop_genre_id');
+  // let sendShopGenreName = document.getElementById('shop_genre_name');
+  let sendShopSummary = document.getElementById('shop_summary');
+  let sendShopImageURL = document.getElementById('shop_image_url');
+
+  sendShopId.value = newShopId.value;
+  sendShopName.value = newShopName.value;
+  sendShopAreaId.value = newShopAreaId.value;
+  // sendShopAreaName.value = newShopAreaName.value;
+  sendShopGenreId.value = newShopGenreId.value;
+  // sendShopGenreName.value = newShopGenreName.value;
+  sendShopSummary.value = newShopSummary.value;
+  sendShopImageURL.value = newShopImageURL.value;
+}
+/* -------------------------------------------------- */
+function unregisteredShopSend2(id) {
+  let form = document.getElementById('ownercng');
+  // form.action = "/admin/" + id;
+  form.action = "/owner";
+  // form.method = 'put';
+  this.unregisteredShop2(id);
 
   form.submit();
 }
@@ -276,4 +321,25 @@ function unregisteredCommentSend(id) {
   this.unregisteredComment(id);
 
   form.submit();
+}
+
+
+function cngValue(id){
+  shop_name = document.getElementById('shop_name' + id).value;
+  shop_image = document.getElementById('shop_image_url' + id).value;
+  shop_area_id = document.getElementById('shop_area_id' + id).value;
+  shop_area = document.getElementById('shop_area_id' + id).options[shop_area_id].innerHTML;
+  shop_genre_id = document.getElementById('shop_genre_id' + id).value;
+  shop_genre = document.getElementById('shop_genre_id' + id).options[shop_genre_id].innerHTML;
+  shop_summary = document.getElementById('shop_summary' + id).value;
+  
+  document.getElementById('confirm_shop_name').innerHTML = id + '：' + shop_name;
+  document.getElementById('confirm_shop_image').src = shop_image;
+
+  index = shop_area.indexOf('：');
+  document.getElementById('confirm_shop_area').innerHTML = shop_area.slice(index).replace('：', '#');
+  
+  index = shop_genre.indexOf('：');
+  document.getElementById('confirm_shop_genre').innerHTML = shop_genre.slice(index).replace('：','#');;
+  document.getElementById('confirm_shop_summary').innerHTML = shop_summary;
 }

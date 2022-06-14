@@ -18,7 +18,8 @@
 /* -------------------------------------------------- */
 .nav {
   width: 100px;
-  height: 100vh;
+  /* height: 100vh; */
+  min-height: 100vh;
   background-color: var(--lightblue);
   font-size: 0.9rem;
 }
@@ -65,7 +66,8 @@
 /* -------------------------------------------------- */
 .content_frame {
   width: 95vw;
-  height: 100vh;
+  /* height: 100vh; */
+  min-height: 100vh;
   /* background-color: beige; */
   background-color: #e0f0f0;
 }
@@ -191,7 +193,7 @@
   --password: 12fr;
 
   --comment: 20fr;
-  --image: 4fr;
+  --image: 120px;
   --likecount: 48px;
   --reservenum: 60px;
   --evaluation: 10rem;
