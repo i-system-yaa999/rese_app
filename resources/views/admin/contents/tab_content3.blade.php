@@ -1,15 +1,26 @@
 <div class="tab_content" id="content3">
   <div class="tab_content_gide">
-    <label for="search_shop" class="searchlabel">店舗名で検索</label>
-    <input type="search" name="search_shop" id="search_shop" placeholder="店舗名を入力" class="serchinput"><button class="btn btn-search">検索</button>
-    <label for="area_name" class="searchlabel">エリアで検索</label>
-    <select name="area_name" id="area_name" class="serchinput" onchange="" form="">
-      <option value="0">エリアを選択してください</option>
+    {{-- 店舗名で検索 --}}
+    <label for="search_shop_name" class="searchlabel">店舗名で検索</label>
+    <input type="search" name="search_shop_name" id="search_shop_name" placeholder="店舗名を入力" class="serchinput" value="{{old('search_shop_name',$search_shop_name ?? '')}}" form="admin">
+    <button class="btn btn-search" type="submit" form="admin" onclick="adminSearch()">検索</button>
+    {{-- エリアで検索 --}}
+    <label for="search_area_id" class="searchlabel">エリアで検索</label>
+    <select name="search_area_id" id="search_area_id" class="serchinput" form="admin" onchange="adminSearch()">
+      <option value="0">すべて</option>
+      @foreach($allareas as $area)
+      <option value="{{$area->id}}" @if($area->id == old('search_area_id',$search_area_id ?? '')) selected @endif>{{$area->id.'：'.$area->name}}</option>
+      @endforeach
     </select>
-    <label for="genre_name" class="searchlabel">ジャンルで検索</label>
-    <select name="genre_name" id="genre_name" class="serchinput" onchange="" form="">
-      <option value="0">ジャンルを選択してください</option>
+    {{-- ジャンルで検索 --}}
+    <label for="search_genre_id" class="searchlabel">ジャンルで検索</label>
+    <select name="search_genre_id" id="search_genre_id" class="serchinput" form="admin" onchange="adminSearch()">
+      <option value="0">すべて</option>
+      @foreach($allgenres as $genre)
+      <option value="{{$genre->id}}" @if($genre->id == old('search_genre_id',$search_genre_id ?? '')) selected @endif>{{$genre->id.'：'.$genre->name}}</option>
+      @endforeach
     </select>
+    {{--  --}}
     <div>{{$shops->total()}}件の「店舗」が見つかりました。</div>
     {{-- ページネーション --}}
     <div class="page_info">

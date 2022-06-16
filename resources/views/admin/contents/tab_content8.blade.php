@@ -1,11 +1,33 @@
 <div class="tab_content" id="content2">
   <div class="tab_content_gide">
-    <label for="search_user" class="searchlabel">ユーザー名で検索</label>
-    <input type="search" name="search_user" id="search_user" placeholder="ユーザー名を入力" class="serchinput"><button class="btn btn-search">検索</button>
-    <label for="shop_name" class="searchlabel">店舗名で検索</label>
-    <select name="shop_name" id="shop_name" class="serchinput" onchange="" form="">
-      <option value="">選択してください</option>
+    {{-- ユーザー名で検索 --}}
+    <label for="search_user_name" class="searchlabel">ユーザー名で検索</label>
+    <select name="search_user_id" id="search_user_id" class="serchinput" form="admin" onchange="adminSearch()">
+      <option value="">すべて</option>
+      @foreach($allusers as $user)
+      <option value="{{$user->id}}" @if($user->id == old('search_user_id',$search_user_id ?? '')) selected @endif>{{$user->id.'：'.$user->name}}</option>
+      @endforeach
     </select>
+    {{-- 店舗名で検索 --}}
+    <label for="search_shop_id" class="searchlabel">店舗名で検索</label>
+    <select name="search_shop_id" id="search_shop_id" class="serchinput" form="admin" onchange="adminSearch()">
+      <option value="">すべて</option>
+      @foreach($allshops as $shop)
+      <option value="{{$shop->id}}" @if($shop->id == old('search_shop_id',$search_shop_id ?? '')) selected @endif>{{$shop->id.'：'.$shop->name}}</option>
+      @endforeach
+    </select>
+    {{-- 評価数で検索 --}}
+    <label for="search_evaluation" class="searchlabel">評価数で検索</label>
+    <select name="search_evaluation" id="search_evaluation" class="serchinput" form="admin" onchange="adminSearch()">
+      <option value="" @if(null === old('search_evaluation',$search_evaluation ?? '')) selected @endif>すべて</option>
+      <option value="0" @if('0' === old('search_evaluation',$search_evaluation ?? '')) selected @endif>0</option>
+      <option value="1" @if('1' === old('search_evaluation',$search_evaluation ?? '')) selected @endif>1</option>
+      <option value="2" @if('2' === old('search_evaluation',$search_evaluation ?? '')) selected @endif>2</option>
+      <option value="3" @if('3' === old('search_evaluation',$search_evaluation ?? '')) selected @endif>3</option>
+      <option value="4" @if('4' === old('search_evaluation',$search_evaluation ?? '')) selected @endif>4</option>
+      <option value="5" @if('5' === old('search_evaluation',$search_evaluation ?? '')) selected @endif>5</option>
+    </select>
+    {{--  --}}
     <div>{{$comments->total()}}件の「評価登録」が見つかりました。</div>
     {{-- ページネーション --}}
     <div class="page_info">

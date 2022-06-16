@@ -1,7 +1,10 @@
 <div class="tab_content" id="content4">
   <div class="tab_content_gide">
-    <label for="search_area" class="searchlabel">エリア名で検索</label>
-    <input type="search" name="search_area" id="search_area"placeholder="エリア名を入力" class="serchinput"><button class="btn btn-search">検索</button>
+    {{-- エリア名で検索 --}}
+    <label for="search_area_name" class="searchlabel">エリア名で検索</label>
+    <input type="search" name="search_area_name" id="search_area_name"placeholder="エリア名を入力" class="serchinput" value="{{old('search_area_name',$search_area_name ?? '')}}" form="admin">
+    <button class="btn btn-search" type="submit" form="admin" onclick="adminSearch()">検索</button>
+    {{--  --}}
     <div>{{$areas->total()}}件の「エリア」が見つかりました。</div>
     {{-- ページネーション --}}
     <div class="page_info">

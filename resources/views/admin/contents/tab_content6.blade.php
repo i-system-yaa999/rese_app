@@ -1,7 +1,25 @@
 <div class="tab_content" id="content6">
   <div class="tab_content_gide">
-    <label for="search_reserve" class="searchlabel">予約年月で検索</label>
-    <input type="month" name="search_reserve" id="search_reserve" class="serchinput"><button class="btn btn-search">検索</button>
+    {{-- ユーザー名で検索 --}}
+    <label for="search_user_id" class="searchlabel">ユーザー名で検索</label>
+    <select name="search_user_id" id="search_user_id" class="serchinput" form="admin" onchange="adminSearch()">
+      <option value="">すべて</option>
+      @foreach($allusers as $user)
+      <option value="{{$user->id}}" @if($user->id == old('search_user_id',$search_user_id ?? '')) selected @endif>{{$user->id.'：'.$user->name}}</option>
+      @endforeach
+    </select>
+    {{-- 店舗名で検索 --}}
+    <label for="search_shop_id" class="searchlabel">店舗名で検索</label>
+    <select name="search_shop_id" id="search_shop_id" class="serchinput" form="admin" onchange="adminSearch()">
+      <option value="">すべて</option>
+      @foreach($allshops as $shop)
+      <option value="{{$shop->id}}" @if($shop->id == old('search_shop_id',$search_shop_id ?? '')) selected @endif>{{$shop->id.'：'.$shop->name}}</option>
+      @endforeach
+    </select>
+    {{-- 予約年月で検索 --}}
+    <label for="search_reserve_date" class="searchlabel">予約年月で検索</label>
+    <input type="date" name="search_reserve_date" id="search_reserve_date" class="serchinput" value="{{old('search_reserve_date',$search_reserve_date ?? '')}}" form="admin" onchange="adminSearch()">
+    {{--  --}}
     <div>{{$reserves->total()}}件の「予約」が見つかりました。</div>
     {{-- ページネーション --}}
     <div class="page_info">

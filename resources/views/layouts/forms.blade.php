@@ -28,6 +28,8 @@
   <x-form name="admincng" id="admincng" action="/admin" method="put"></x-form>
   <!-- 管理者 情報削除フォーム -->
   <x-form name="admindel" id="admindel" action="/admin" method="delete"></x-form>
+  <!-- 管理者 情報検索フォーム -->
+  <form name="adminsearch" id="adminsearch" action="/admin/search" method="get">@csrf</form>
 
   <!-- 店舗代表者 情報登録フォーム -->
   <x-form name="owner" id="owner" action="/owner" method="post"></x-form>

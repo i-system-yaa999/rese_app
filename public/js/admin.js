@@ -343,3 +343,10 @@ function cngValue(id){
   document.getElementById('confirm_shop_genre').innerHTML = shop_genre.slice(index).replace('：','#');;
   document.getElementById('confirm_shop_summary').innerHTML = shop_summary;
 }
+
+function adminSearch() {
+  let form = document.getElementById('admin');
+  form.action = '/admin/search';
+  form.method = 'get';
+  form.submit();  
+}
