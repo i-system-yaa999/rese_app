@@ -1,20 +1,26 @@
 <div class="tab_content" id="content1">
   <div class="tab_content_gide">
-    {{-- <label for="search_owner" class="searchlabel">店舗代表者名で検索</label>
-    <input type="search" name="search_owner" id="search_owner" placeholder="店舗代表者名を入力" class="serchinput"><button class="btn btn-search">検索</button> --}}
-
-    <label for="search_name" class="searchlabel">店舗代表者名で検索</label>
-    <input type="search" name="search_name" id="search_owner" placeholder="店舗代表者名を入力" class="serchinput" value="" form="search">
-    <button class="btn btn-search" type="submit" formaction="/admin/search" formmethod="get" form="admin">検索</button>
-
-    <label for="shop_name" class="searchlabel">店舗名で検索</label>
-    <select name="shop_name" id="shop_name" class="serchinput" onchange="" form="">
-      <option value="">選択してください</option>
+    {{-- 店舗代表者名で検索 --}}
+    <label for="search_user_name" class="searchlabel">店舗代表者名で検索</label>
+    <select name="search_user_id" id="search_user_id" class="serchinput" form="admin" onchange="adminSearch()">
+      <option value="">すべて</option>
+      @foreach($allusers as $user)
+      <option value="{{$user->id}}" @if($user->id == old('search_user_id',$search_user_id ?? '')) selected @endif>{{$user->id.'：'.$user->name}}</option>
+      @endforeach
     </select>
+    {{-- 店舗名で検索 --}}
+    <label for="search_shop_id" class="searchlabel">店舗名で検索</label>
+    <select name="search_shop_id" id="search_shop_id" class="serchinput" form="admin" onchange="adminSearch()">
+      <option value="">すべて</option>
+      @foreach($allshops as $shop)
+      <option value="{{$shop->id}}" @if($shop->id == old('search_shop_id',$search_shop_id ?? '')) selected @endif>{{$shop->id.'：'.$shop->name}}</option>
+      @endforeach
+    </select>
+    {{--  --}}
     <div>{{$owners->total()}}件の「店舗代表者」が見つかりました。</div>
     {{-- ページネーション --}}
     <div class="page_info">
-      <div class="page_counts">
+      <div class="page_counts">ー
         全{{$owners->total()}}件中
         @if($owners->total() > 0)
         {{$owners->firstItem()}}～{{$owners->lastItem()}}件

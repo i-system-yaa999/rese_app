@@ -146,14 +146,15 @@ class AdminController extends Controller
                 return back()->withErrors($validator)->withInput();
             }
             $user = User::where('id', $request->input('owner_user_id'))->first();
+            // パスワード変更なし
             if (Hash::check($request->input('owner_user_password'), $user->password)) {
                 User::where('id', $request->input('owner_user_id'))->update([
                     'name' => $request->input('owner_user_name'),
                     'email' => $request->input('owner_user_email'),
                     'role' => 5,
                 ]);
+            // パスワード変更あり
             } else {
-                // dd($request->input('owner_user_password'), $user->password);
                 User::where('id', $request->input('owner_user_id'))->update([
                     'name' => $request->input('owner_user_name'),
                     'email' => $request->input('owner_user_email'),
@@ -322,5 +323,179 @@ class AdminController extends Controller
             Comment::find($request->comment_id)->delete();
         }
         return back();
+    }
+    // 検索
+    public function search(Request $request)
+    {
+        $displays = 10;
+        $owners = '';
+        $users = '';
+        $shops = '';
+        $areas = '';
+        $genres = '';
+        $reserves = '';
+        $owners = '';
+        $likes = '';
+        $comments = '';
+
+        switch($request->input('tab_item')){
+            case 0:
+                break;
+            // 店舗代表者検索
+            case 1:
+                // 検索条件：00 (条件なし)
+                if (!($request->search_user_id) && !($request->search_shop_id)) {
+                    $owners = Owner::orderBy('id', 'desc')->Paginate($displays, ['*'], 'ownerspage');
+                    // 検索条件：10 (ユーザーのみ)
+                } elseif (($request->search_user_id) && !($request->search_shop_id)) {
+                    $owners = Owner::where('user_id', $request->search_user_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'ownerspage');
+                    // 検索条件：01 (店舗のみ)
+                } elseif (!($request->search_user_id) && ($request->search_shop_id)) {
+                    $owners = Owner::where('shop_id', $request->search_shop_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'ownerspage');
+                    // 検索条件：11 (ユーザー、店舗)
+                } elseif (($request->search_user_id) && ($request->search_shop_id)) {
+                    $owners = Owner::where('user_id', $request->search_user_id)->where('shop_id', $request->search_shop_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'ownerspage');
+                }   
+                break;
+            // ユーザー検索
+            case 2:
+                $users = User::where('name', 'LIKE', '%' . $request->search_user_name . "%")->orderBy('id', 'desc')->Paginate($displays, ['*'], 'userspage');
+                break;
+            // 店舗検索
+            case 3:
+                // 検索条件：000 (条件なし)
+                if(!($request->search_shop_name) && !($request->search_area_id) && !($request->search_genre_id)){
+                    $shops = Shop::orderBy('id', 'desc')->Paginate($displays, ['*'], 'shopspage');                
+                // 検索条件：100 (店舗のみ)
+                }elseif(($request->search_shop_name) && !($request->search_area_id) && !($request->search_genre_id)){
+                    $shops = Shop::where('name', 'LIKE', '%' . $request->search_shop_name . "%")->orderBy('id', 'desc')->Paginate($displays, ['*'], 'shopspage');
+                // 検索条件：010 (エリアのみ)
+                } elseif ((!$request->search_shop_name) && ($request->search_area_id) && !($request->search_genre_id)) {
+                    $shops = Shop::where('area_id',$request->search_area_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'shopspage');
+                // 検索条件：110 (店舗、エリア)
+                } elseif (($request->search_shop_name) && ($request->search_area_id) && !($request->search_genre_id)) {
+                    $shops = Shop::where('name', 'LIKE', '%' . $request->search_shop_name . "%")->where('area_id', $request->search_area_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'shopspage');
+                // 検索条件：001 (ジャンルのみ)
+                } elseif ((!$request->search_shop_name) && !($request->search_area_id) && ($request->search_genre_id)) {
+                    $shops = Shop::where('genre_id', $request->search_genre_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'shopspage');
+                // 検索条件：101 (店舗、ジャンル)
+                } elseif (($request->search_shop_name) && !($request->search_area_id) && ($request->search_genre_id)) {
+                    $shops = Shop::where('name', 'LIKE', '%' . $request->search_shop_name . "%")->where('genre_id', $request->search_genre_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'shopspage');
+                // 検索条件：011 (エリア、ジャンル)
+                } elseif (!($request->search_shop_name) && ($request->search_area_id) && ($request->search_genre_id)) {
+                    $shops = Shop::where('area_id', $request->search_area_id)->where('genre_id', $request->search_genre_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'shopspage');
+                // 検索条件：111 (店舗、エリア、ジャンル)
+                } elseif (($request->search_shop_name) && ($request->search_area_id) && ($request->search_genre_id)) {
+                    $shops = Shop::where('name', 'LIKE', '%' . $request->search_shop_name . "%")->where('area_id', $request->search_area_id)->where('genre_id', $request->search_genre_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'shopspage');
+                }
+                break;
+            // エリア検索
+            case 4:
+                $areas = Area::where('name', 'LIKE', '%' . $request->search_area_name . "%")->orderBy('id', 'desc')->Paginate($displays, ['*'], 'areaspage');
+                break;
+            // ジャンル検索
+            case 5:
+                $genres = Genre::where('name', 'LIKE', '%' . $request->search_genre_name . "%")->orderBy('id', 'desc')->Paginate($displays, ['*'], 'genrespage');
+                break;
+            // 予約検索
+            case 6:
+                // 検索条件：000 (条件なし)
+                if (!($request->search_user_id) && !($request->search_shop_id) && !($request->search_reserve_date)) {
+                    $reserves = Reserve::orderBy('id', 'desc')->Paginate($displays, ['*'], 'reservespage');     
+                // 検索条件：100 (ユーザー名のみ)
+                } elseif (($request->search_user_id) && !($request->search_shop_id) && !($request->search_reserve_date)) {
+                    $reserves = Reserve::where('user_id',$request->search_user_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'reservespage');
+                // 検索条件：010 (店舗のみ)
+                } elseif (!($request->search_user_id) && ($request->search_shop_id) && !($request->search_reserve_date)) {
+                    $reserves = Reserve::where('shop_id', $request->search_shop_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'reservespage');
+                // 検索条件：110 (ユーザー名、店舗)
+                } elseif (($request->search_user_id) && ($request->search_shop_id) && !($request->search_reserve_date)) {
+                    $reserves = Reserve::where('user_id', $request->search_user_id)->where('shop_id', $request->search_shop_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'reservespage');
+                // 検索条件：001 (予約日のみ)
+                } elseif (!($request->search_user_id) && !($request->search_shop_id) && ($request->search_reserve_date)) {
+                    $reserves = Reserve::whereDate('reserved_at', $request->search_reserve_date)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'reservespage');
+                // 検索条件：101 (ユーザー名、予約日)
+                } elseif (($request->search_user_id) && !($request->search_shop_id) && ($request->search_reserve_date)) {
+                    $reserves = Reserve::where('user_id', $request->search_user_id)->whereDate('reserved_at', $request->search_reserve_date)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'reservespage');
+                // 検索条件：011 (店舗、予約日)
+                } elseif (!($request->search_user_id) && ($request->search_shop_id) && ($request->search_reserve_date)) {
+                    $reserves = Reserve::where('shop_id', $request->search_shop_id)->whereDate('reserved_at', $request->search_reserve_date)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'reservespage');
+                // 検索条件：111 (ユーザー名、店舗、予約日)
+                } elseif (($request->search_user_id) && ($request->search_shop_id) && ($request->search_reserve_date)) {
+                    $reserves = Reserve::where('user_id', $request->search_user_id)->where('shop_id', $request->search_shop_id)->whereDate('reserved_at', $request->search_reserve_date)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'reservespage');
+                }
+                break;
+            // お気に入り検索
+            case 7:
+                // 検索条件：00 (条件なし)
+                if (!($request->search_user_id) && !($request->search_shop_id)) {
+                    $likes = Like::orderBy('id', 'desc')->Paginate($displays, ['*'], 'likespage');
+                // 検索条件：10 (ユーザーのみ)
+                } elseif (($request->search_user_id) && !($request->search_shop_id)) {
+                    $likes = Like::where('user_id', $request->search_user_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'likespage');
+                // 検索条件：01 (店舗のみ)
+                } elseif (!($request->search_user_id) && ($request->search_shop_id)) {
+                    $likes = Like::where('shop_id', $request->search_shop_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'likespage');
+                // 検索条件：11 (ユーザー、店舗)
+                } elseif (($request->search_user_id) && ($request->search_shop_id)) {
+                    $likes = Like::where('user_id', $request->search_user_id)->where('shop_id', $request->search_shop_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'likespage');
+                }                
+                break;
+            // 評価検索
+            case 8:
+                // 検索条件：000 (条件なし)
+                if (!($request->search_user_id) && !($request->search_shop_id) && is_null($request->search_evaluation)) {
+                    $comments = Comment::orderBy('id', 'desc')->Paginate($displays, ['*'], 'commentspage');
+                    // 検索条件：100 (ユーザーのみ)
+                } elseif (($request->search_user_id) && !($request->search_shop_id) && is_null($request->search_evaluation)) {
+                    $comments = Comment::where('user_id', 'LIKE', '%' . $request->search_user_id . "%")->orderBy('id', 'desc')->Paginate($displays, ['*'], 'commentspage');
+                    // 検索条件：010 (店舗のみ)
+                } elseif ((!$request->search_user_id) && ($request->search_shop_id) && is_null($request->search_evaluation)) {
+                    $comments = Comment::where('shop_id', $request->search_shop_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'commentspage');
+                    // 検索条件：110 (ユーザー、店舗)
+                } elseif (($request->search_user_id) && ($request->search_shop_id) && is_null($request->search_evaluation)) {
+                    $comments = Comment::where('user_id',$request->search_user_id)->where('shop_id', $request->search_shop_id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'commentspage');
+                    // 検索条件：001 (評価のみ)
+                } elseif ((!$request->search_user_id) && !($request->search_shop_id) && isset($request->search_evaluation)) {
+                    $comments = Comment::where('evaluation', $request->search_evaluation)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'commentspage');
+                    // 検索条件：101 (ユーザー、評価)
+                } elseif (($request->search_user_id) && !($request->search_shop_id) && isset($request->search_evaluation)) {
+                    $comments = Comment::where('user_id',$request->search_user_id)->where('evaluation', $request->search_evaluation)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'commentspage');
+                    // 検索条件：011 (店舗、評価)
+                } elseif (!($request->search_user_id) && ($request->search_shop_id) && isset($request->search_evaluation)) {
+                    $comments = Comment::where('shop_id', $request->search_shop_id)->where('evaluation', $request->search_evaluation)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'commentspage');
+                    // 検索条件：111 (ユーザー、店舗、評価)
+                } elseif (($request->search_user_id) && ($request->search_shop_id) && isset($request->search_evaluation)) {
+                    $comments = Comment::where('user_id', $request->search_user_id)->where('shop_id', $request->search_shop_id)->where('evaluation', $request->search_evaluation)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'commentspage');
+                }
+                break;
+        }
+        return view('admin/admin')->with([
+            'tab_item' => $request->input('tab_item'),
+            'owners' => $owners,
+            'users' => $users,
+            'shops' => $shops,
+            'areas' => $areas,
+            'genres' => $genres,
+            'reserves' => $reserves,
+            'likes' => $likes,
+            'comments' => $comments,
+            'allusers' => User::all(),
+            'allshops' => Shop::all(),
+            'allareas' => Area::all(),
+            'allgenres' => Genre::all(),
+            'create_item_id' =>  $request->input('create_item_id') ?? '9999',
+
+            'search_user_id' => $request->input('search_user_id'),
+            'search_user_name' => $request->input('search_user_name'),
+            'search_shop_id' => $request->input('search_shop_id'),
+            'search_shop_name' => $request->input('search_shop_name'),
+            'search_area_id' => $request->input('search_area_id'),
+            'search_area_name' => $request->input('search_area_name'),
+            'search_genre_id' => $request->input('search_genre_id'),
+            'search_genre_name' => $request->input('search_genre_name'),
+            'search_reserve_date' => $request->input('search_reserve_date'),
+            'search_evaluation' => $request->input('search_evaluation'),
+        ]);
     }
 }

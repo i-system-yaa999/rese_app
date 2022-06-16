@@ -1,11 +1,23 @@
 <div class="tab_content" id="content2">
   <div class="tab_content_gide">
-    <label for="search_user" class="searchlabel">ユーザー名で検索</label>
-    <input type="search" name="search_user" id="search_user" placeholder="ユーザー名を入力" class="serchinput"><button class="btn btn-search">検索</button>
-    <label for="shop_name" class="searchlabel">店舗名で検索</label>
-    <select name="shop_name" id="shop_name" class="serchinput" onchange="" form="">
-      <option value="">選択してください</option>
+    {{-- ユーザー名で検索 --}}
+    <label for="search_user_id" class="searchlabel">ユーザー名で検索</label>
+    <select name="search_user_id" id="search_user_id" class="serchinput" form="admin" onchange="adminSearch()">
+      <option value="">すべて</option>
+      @foreach($allusers as $user)
+      <option value="{{$user->id}}" @if($user->id == old('search_user_id',$search_user_id ?? '')) selected
+        @endif>{{$user->id.'：'.$user->name}}</option>
+      @endforeach
     </select>
+    {{-- 店舗名で検索 --}}
+    <label for="search_shop_id" class="searchlabel">店舗名で検索</label>
+    <select name="search_shop_id" id="search_shop_id" class="serchinput" form="admin" onchange="adminSearch()">
+      <option value="">すべて</option>
+      @foreach($allshops as $shop)
+      <option value="{{$shop->id}}" @if($shop->id == old('search_shop_id',$search_shop_id ?? '')) selected @endif>{{$shop->id.'：'.$shop->name}}</option>
+      @endforeach
+    </select>
+    {{--  --}}
     <div>{{$likes->total()}}件の「お気に入り登録」が見つかりました。</div>
     {{-- ページネーション --}}
     <div class="page_info">

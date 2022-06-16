@@ -89,6 +89,10 @@ Route::controller(AdminController::class)->group(function() {
         Route::post('/admin', 'create');
         Route::put('/admin', 'update');
         Route::delete('/admin', 'delete');
+        Route::get('/admin/search', 'search');
+        // Route::get('/admin/search', function(){
+        //     return 'ok';
+        // });
     });
 });
 

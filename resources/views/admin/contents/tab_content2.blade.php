@@ -1,7 +1,10 @@
 <div class="tab_content" id="content2">
   <div class="tab_content_gide">
-    <label for="search_user" class="searchlabel">ユーザー名で検索</label>
-    <input type="search" name="search_user" id="search_user" placeholder="ユーザー名を入力" class="serchinput"><button class="btn btn-search">検索</button>
+    {{-- ユーザー名で検索 --}}
+    <label for="search_user_name" class="searchlabel">ユーザー名で検索</label>
+    <input type="search" name="search_user_name" id="search_user_name" placeholder="ユーザー名を入力" class="serchinput" value="{{old('search_user_name',$search_user_name ?? '')}}" form="admin">
+    <button class="btn btn-search" type="submit" form="admin" onclick="adminSearch()">検索</button>
+    {{--  --}}
     <div>{{$users->total()}}件の「ユーザー」が見つかりました。</div>
     {{-- ページネーション --}}
     <div class="page_info">

@@ -1,7 +1,10 @@
 <div class="tab_content" id="content5">
   <div class="tab_content_gide">
-    <label for="search_genre" class="searchlabel">ジャンル名で検索</label>
-    <input type="search" name="search_genre" id="search_genre" placeholder="ジャンル名を入力" class="serchinput"><button class="btn btn-search">検索</button>
+    {{-- ジャンル名で検索 --}}
+    <label for="search_genre_name" class="searchlabel">ジャンル名で検索</label>
+    <input type="search" name="search_genre_name" id="search_genre_name" placeholder="ジャンル名を入力" class="serchinput" value="{{old('search_genre_name',$search_genre_name ?? '')}}" form="admin">
+    <button class="btn btn-search" type="submit" form="admin" onclick="adminSearch()">検索</button>
+    {{--  --}}
     <div>{{$genres->total()}}件の「ジャンル」が見つかりました。</div>
     {{-- ページネーション --}}
     <div class="page_info">
