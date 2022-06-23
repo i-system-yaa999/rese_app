@@ -90,13 +90,10 @@
       </div>
       {{-- 店舗名 --}}
       <div class="item-shop_name">
-        {{-- <input type="hidden" name="owner_shop_name{{$owner->id}}" id="owner_shop_name{{$owner->id}}" class="inputbox" value="{{$owner->shop->name}}" form="admincng"> --}}
         <select name="owner_shop_id{{$owner->id}}" id="owner_shop_id{{$owner->id}}" class="selectbox" form="admincng" onchange="unregisteredOwner({{$owner->id}})">
-          {{-- <option value="{{$owner->shop->id}}">{{$owner->shop->id.'：'.$owner->shop->name}}</option> --}}
           <option value="{{($owner->shop->id ?? '9999')}}">{{($owner->shop->id ?? '9999').'：'.($owner->shop->name ?? '未登録')}}
           </option>
           @foreach($allshops as $shop)
-          {{-- <option value="{{$shop->id}}" @if($owner->shop->id == $shop->id) selected @endif>{{$shop->id.'：'.$shop->name}}</option> --}}
           <option value="{{$shop->id}}" @if(($owner->shop->id ?? '9999') == $shop->id) selected @endif>{{$shop->id.'：'.$shop->name}}</option>
           @endforeach
         </select>
@@ -113,7 +110,6 @@
       <div class="item-created">{{$owner->created_at}}<span class="hr"></span>{{$owner->updated_at}}</div>
       {{-- 登録ボタン --}}
       <div class="item-center item-modify">
-        {{-- <button class="btn btn-modify" type="submit" formaction="/admin?owner_id={{$owner->id}}" form="admincng">登録</button> --}}
         <button class="btn btn-modify" type="submit" onclick="unregisteredOwnerSend({{$owner->id}})">登録</button>
       </div>
       {{-- 削除ボタン --}}

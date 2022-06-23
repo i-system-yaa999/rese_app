@@ -24,7 +24,6 @@ class AreaRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'area_name' => 'required|max:10|unique:areas',
             'area_name' => 'required|max:10',
         ];
     }

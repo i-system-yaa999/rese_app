@@ -1,7 +1,6 @@
 /* -------------------------------------------------- */
 /*タブ切り替え全体のスタイル*/
 .tabs {
-  /* padding-bottom: 40px; */
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: var(--tab_width);
@@ -24,7 +23,6 @@ input[name="tab_item"] {
   width: 100%;
   height: 50px;
   border-bottom: 3px solid var(--middleblue);
-  /* border-right: 1px solid var(--darkblue); */
   background-color: #d9d9d9;
   line-height: 50px;
   font-size: 1rem;
@@ -47,7 +45,6 @@ input[name="tab_item"] {
 }
 /*選択されているタブのスタイルを変える*/
 .tabs input:checked+.tab_item {
-  /* background-color: #5ab4bd; */
   background-color: var(--lightblue);
   color: #fff;
 }
@@ -89,13 +86,10 @@ input[name="tab_item"] {
 /* -------------------------------------------------- */
 .content_data{
   display: grid;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr; */
   grid-template-columns: repeat(var(--item_columns),1fr);
 }
 .content_item{
-  /* width: calc(var(--tab_width)/4 - var(--tab_inner_padding)); */
   width: calc(var(--tab_width)/var(--item_columns) - var(--tab_inner_padding));
-  /* height: calc(var(--tab_width)/4 - var(--tab_inner_padding) * 2); */
   height: 95%;
   margin: 3%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -113,15 +107,12 @@ input[name="tab_item"] {
 }
 .content_item_image{
   width: 100%;
-  /* height: calc((var(--tab_width)/4 - var(--tab_inner_padding))/2*1.1); */
   height: 60%;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 }
 .content_inner_frame{
-  /* background-color: aquamarine; */
   width: 90%;
-  /* height: calc((var(--tab_width)/4 - var(--tab_inner_padding))/2 - 4vw); */
   height: 34%;
   margin: 3% auto;
 }
@@ -133,16 +124,10 @@ input[name="tab_item"] {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  /* text-overflow: ellipsis; */
   overflow: hidden;
 }
 .content_summary:hover {
-  /* overflow: visible; */
-  /* margin-bottom: 2.4rem; */
 }
-/* .content_summary:hover .content_item_image{
-  height: 20%;
-} */
 .content_hashtag{
   font-size: 0.7rem;
   margin: 3% 0;

@@ -11,7 +11,6 @@ use App\Models\Genre;
 use App\Models\Like;
 use App\Models\Reserve;
 use App\Models\Comment;
-use Closure;
 
 class ShopController extends Controller
 {
@@ -50,7 +49,6 @@ class ShopController extends Controller
             case 3:
                 $ret = 'search_name';
                 $names = true;
-                // $shops = Shop::where('name', '=', $request->input('search_name'))->get();
                 break;
         }
 
@@ -81,7 +79,6 @@ class ShopController extends Controller
             // 全て
             case 0:
                 $ret = 'search_all';
-                // $shops = Shop::orderBy('created_at', 'desc')->Paginate(8, ['*'], 'shopspage');
                 $shops = Shop::where('name', '!=', '')->orderBy('id', 'desc')->get();
                 break;
             // エリア検索
@@ -89,14 +86,12 @@ class ShopController extends Controller
                 $ret = 'search_area';
                 $areas = Area::all();
                 $shops = Shop::where('area_id', $request->input('selected_area'))->Paginate(8, ['*'], 'areaspage');
-                // $shops = Shop::where('area_id', $request->input('selected_area'))->get();
                 break;
             // ジャンル検索
             case 2:
                 $ret = 'search_genre';
                 $genres = Genre::all();
                 $shops = Shop::where('genre_id', $request->input('selected_genre'))->Paginate(8, ['*'], 'genrespage');
-                // $shops = Shop::where('genre_id', $request->input('selected_genre'))->get();
                 break;
             // 店名検索
             case 3:
@@ -104,7 +99,6 @@ class ShopController extends Controller
                 $names = true;
                 if (!($request->input('search_name') == '')) {
                     $shops = Shop::where('name', 'LIKE', '%' . $request->input('search_name') . '%')->Paginate(8, ['*'], 'namespage');
-                    // $shops = Shop::where('name', 'LIKE', '%' . $request->input('search_name') . '%')->get();
                 } else {
                     $shops = Shop::where('name', '=', $request->input('search_name'))->get();
                 }

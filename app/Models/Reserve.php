@@ -16,12 +16,6 @@ class Reserve extends Model
         'number',
     ];
 
-    // public function getShopName()
-    // {
-    //     $shop_name = Shop::find($this->shop_id)->name;
-    //     return $shop_name;
-    // }
-
     public function user()
     {
         return $this->belongsTo(User::class);

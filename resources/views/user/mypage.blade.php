@@ -16,7 +16,7 @@
   @include('layouts.header')
   @include('layouts.forms')
   <section class="content_main">
-    <!-- 予約確認 -------------------------------------------------------------------------------- -->
+    <!-- 予約確認  -->
     <div class="reserve_frame" name="reserve" id="reserve">
       <h3 class="reserve_head">予約状況(登録順)</h3>
 
@@ -78,9 +78,6 @@
               <td id="confirmNumber{{$reserve->id}}">{{$reserve->number}}人</td>
             </tr>
           </table>
-          {{-- <div class="qr">
-
-          </div> --}}
         </div>
         <!--  -->
         <button class="reserve_change toggle_open" id="reserve_change{{$reserve->id}}"
@@ -155,7 +152,7 @@
       @endif
 
     </div>
-    <!-- お気に入り確認 -------------------------------------------------------------------------------- -->
+    <!-- お気に入り確認  -->
     <div class="likes_confirm_frame" name="likes_confirm" id="likes_confirm">
       <h3 class="likes_confirm_head">お気に入り店舗(登録順)</h3>
       <div class="likes_confirm_inner">
@@ -178,9 +175,7 @@
         <div class="likes_confirm_data">
           <!-- 店舗情報 -->
           @if(isset($likes)&&($likes->count()>0))
-            {{--dd($likes)--}}
             @foreach($likes as $like)
-            {{--dd($like->shop)--}}
             @include('layouts.content',['shop'=>$like->shop])
             @endforeach
           @else

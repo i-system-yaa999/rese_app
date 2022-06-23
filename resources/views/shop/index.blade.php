@@ -16,11 +16,11 @@
   <script src="{{asset('js/main.js')}}"></script>
   @include('layouts.header')
   @include('layouts.forms')
-  {{--$ret--}}
+  
   <section class="content_main">
     <div class=tabs>
 
-      <!-- tab menu -------------------------------------------------------------------------------- -->
+      <!-- tab menu  -->
 
       <!-- tab menu 全て -->
       <input type="radio" name="tab_item" id="all" value=0 @if($tab_item==0) checked @endif onChange="tabChange()" form="search">
@@ -38,9 +38,9 @@
       <input type="radio" name="tab_item" id="name" value=3 @if($tab_item==3) checked @endif onChange="tabChange()" form="search">
       <label class="tab_item" for="name">店名</label>
 
-      <!-- tab contents -------------------------------------------------------------------------------- -->
+      <!-- tab contents  -->
 
-      <!-- tab contents 全て -------------------------------------------------------------------------------- -->
+      <!-- tab contents 全て  -->
       @if( isset($shops) && empty($areas) && empty($genres) && empty($names) )
       {{--@if($tab_item==='0')--}}
       <div class="tab_content" id="all_content">
@@ -63,9 +63,6 @@
         <div class="content_data">
           <!-- 店舗情報 -->
           @if(isset($shops))
-          {{--dd($shops)--}}
-          <?php //$shops=$shops_all 
-          ?>
           @foreach($shops as $shop)
           @include('layouts.content')
           @endforeach
@@ -89,14 +86,13 @@
       @endif
       <!-- ----- tab end ----- -->
 
-      <!-- tab contents エリア -------------------------------------------------------------------------------- -->
+      <!-- tab contents エリア  -->
       @if(isset($areas))
       {{--@if($tab_item==='1')--}}
       <div class="tab_content" id="area_content">
         <div class="content_nav">
           @if(isset($shops))
           <p>{{$shops->total()}}件のお店が見つかりました。</p>
-          {{-- <p>{{$shops->count()}}件のお店が見つかりました。</p> --}}
           <!-- ページネーション -->
           <div class="page_info">
             <div class="page_counts">
@@ -110,7 +106,6 @@
             @endif
           </div>
           @endif
-          {{--$areas->count()--}}
           <select name="selected_area" onchange=selectboxChange() form="search">
             <option value="0">エリアを選択してください</option>
             @if(isset($areas))
@@ -124,9 +119,6 @@
         <div class="content_data">
           <!-- 店舗情報 -->
           @if(isset($shops))
-          {{--dd($shops)--}}
-          <?php //$shops=$shops_area 
-          ?>
           @foreach($shops as $shop)
           @include('layouts.content')
           @endforeach
@@ -142,14 +134,13 @@
       @endif
       <!-- ----- tab end ----- -->
 
-      <!-- tab contents ジャンル -------------------------------------------------------------------------------- -->
+      <!-- tab contents ジャンル  -->
       @if(isset($genres))
       {{--@if($tab_item==='2')--}}
       <div class="tab_content" id="genre_content">
         <div class="content_nav">
           @if(isset($shops))
           <p>{{$shops->total()}}件のお店が見つかりました。</p>
-          {{-- <p>{{$shops->count()}}件のお店が見つかりました。</p> --}}
           <!-- ページネーション -->
           <div class="page_info">
             <div class="page_counts">
@@ -163,7 +154,6 @@
             @endif
           </div>
           @endif
-          {{--$genres->count()--}}
           <select name="selected_genre" onchange=selectboxChange() form="search">
             <option value="0">ジャンルを選択してください</option>
             @if(isset($genres))
@@ -177,9 +167,6 @@
         <div class="content_data">
           <!-- 店舗情報 -->
           @if(isset($shops))
-          {{--dd($shops)--}}
-          <?php //$shops = $shops_genre 
-          ?>
           @foreach($shops as $shop)
           @include('layouts.content')
           @endforeach
@@ -195,14 +182,13 @@
       @endif
       <!-- ----- tab end ----- -->
 
-      <!-- tab contents 店名 -------------------------------------------------------------------------------- -->
+      <!-- tab contents 店名  -->
       @if(isset($names))
       {{--@if($tab_item==='3')--}}
       <div class="tab_content" id="name_content">
         <div class="content_nav">
           @if(isset($shops))
           <p>{{$shops->total()}}件のお店が見つかりました。</p>
-          {{-- <p>{{$shops->count()}}件のお店が見つかりました。</p> --}}
           <!-- ページネーション -->
           <div class="page_info">
             <div class="page_counts">
@@ -224,9 +210,6 @@
         <div class="content_data">
           <!-- 店舗情報 -->
           @if(isset($shops))
-          {{--dd($shops)--}}
-          <?php //$shops=$shops_name 
-          ?>
           @foreach($shops as $shop)
           @include('layouts.content')
           @endforeach

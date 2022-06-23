@@ -118,8 +118,6 @@
     </nav>
     {{-- nav end --}}
 
-    {{-- <form action="/admin" id="admin"></form> --}}
-
     {{-- content --}}
     <section class="content_frame">
 
@@ -212,13 +210,17 @@
       </div>
       {{-- tab contents end --}}
       
-      <div class="msg_window">
-        <p class="msg_window_title">データ削除</p>
-        <p class="msg_window_message">関連するデータが全て消去されます。</p>
-        <p class="msg_window_message">削除を実行しますか？</p>
-        <div class="msg_window_button">
-          <button class="btn btn-cancel">キャンセル</button>
-          <button class="btn btn-delete">削除</button>
+      <div class="message_box">
+        <div class="message_title">
+          <p>データ削除</p>
+        </div>
+        <div class="message_body">
+          <p class="msg_window_message">関連するデータが全て消去されます。</p>
+          <p class="msg_window_message">削除を実行しますか？</p>
+          <div class="msg_window_button">
+            <button class="btn btn-delete">削除</button>
+            <button class="btn btn-cancel">キャンセル</button>
+          </div>
         </div>
       </div>
 

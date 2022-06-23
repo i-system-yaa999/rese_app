@@ -18,7 +18,6 @@
       <div class="message_title">
         <p>ログアウトしますか？</p>
       </div>
-      <!-- <a href="/user/logout">ログアウト</a> -->
       <form class="message_form" method="POST" action="{{route('logout')}}">
         @csrf
         <button type="submit">ログアウト</button>

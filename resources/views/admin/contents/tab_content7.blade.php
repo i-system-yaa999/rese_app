@@ -36,12 +36,9 @@
     <div class="tbl-like tbl-head">
       <div></div>
       <div class="item-center item-id">ID</div>
-      {{-- <div class="item-id">ユーザーID</div> --}}
       <div>ユーザー名</div>
-      {{-- <div class="item-id">店舗ID</div> --}}
       <div>店舗名</div>
       <div></div>
-      {{-- <div></div> --}}
       <div>作成日<br>------<br>更新日</div>
       <div></div>
       <div></div>
@@ -65,7 +62,6 @@
         <div class="item-center item-id" name="like_id{{$like->id}}" id="like_id{{$like->id}}">{{$like->id}}</div>
         {{-- ユーザー名 --}}
         <div class="item-user-name">
-          {{-- <input type="hidden" name="" class="inputbox" value="{{$like->user->id}}"> --}}
           <select name="like_user_id{{$like->id}}" id="like_user_id{{$like->id}}" class="selectbox" form="admincng" onchange="unregisteredLike({{$like->id}})">
             <option value="{{($like->user->id ?? '9999')}}">{{($like->user->id ?? '9999').'：'.($like->user->name ?? '未登録')}}</option>
             @foreach($allusers as $user)
@@ -78,7 +74,6 @@
         </div>
         {{-- 店舗名 --}}
         <div class="item-shopname">
-          {{-- <input type="hidden" name="" class="inputbox" value="{{$like->shop->id}}"> --}}
           <select name="like_shop_id{{$like->id}}" id="like_shop_id{{$like->id}}" class="selectbox" form="admincng" onchange="unregisteredLike({{$like->id}})">
             <option value="{{($like->shop->id ?? '9999')}}">{{($like->shop->id ?? '9999').'：'.($like->shop->name ?? '未登録')}}
             </option>
@@ -96,7 +91,6 @@
         <div class="item-created">{{$like->created_at}}<span class="hr"></span>{{$like->updated_at}}</div>
         {{-- 登録ボタン --}}
         <div class="item-center item-modify">
-          {{-- <button class="btn btn-modify" type="submit" formaction="/admin?like_id={{$like->id}}" form="admincng">登録</button> --}}
           <button class="btn btn-modify" type="submit" onclick="unregisteredLikeSend({{$like->id}})">登録</button>
         </div>
         {{-- 削除ボタン --}}

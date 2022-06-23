@@ -7,7 +7,6 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reserve;
 use App\Models\Like;
-use App\Models\Shop;
 
 class UserController extends Controller
 {
@@ -40,7 +39,6 @@ class UserController extends Controller
     {
         $reserves = Reserve::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->Paginate(2, ['*'], 'reservespage');
         $likes = Like::where('user_id', Auth::user()->id)->orderBy('id','desc')->Paginate(4, ['*'], 'likespage');
-        // $shops= $likes->shops;
         return view('user.mypage', [
             'reserves' => $reserves,
             'likes' => $likes,

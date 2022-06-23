@@ -10,10 +10,10 @@
     <p class="content_hashtag">
       <!-- エリア -->
       <input type="radio" name="tab_item" id="area" value=1 onChange="tabChange()">
-      <label class="shop_address" for="area">#{{--$shop->getAreaName()--}}{{$shop->area->name}}</label>
+      <label class="shop_address" for="area">#{{$shop->area->name ?? '---'}}</label>
       <!-- ジャンル -->
       <input type="radio" name="tab_item" id="genre" value=2 onChange="tabChange()">
-      <label class="shop_genre" for="genre">#{{--$shop->getGenreName()--}}{{$shop->genre->name}}</label>
+      <label class="shop_genre" for="genre">#{{$shop->genre->name ?? '---'}}</label>
     </p>
     <div class="content_action">
       <!-- 詳細ページリンク -->
