@@ -24,7 +24,6 @@ class GenreRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'genre_name' => 'required|max:20|unique:genres',
             'genre_name' => 'required|max:20',
         ];
     }

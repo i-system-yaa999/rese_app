@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -42,8 +41,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function like()
+    {
+        return $this->hasOne(Like::class);
+    }
+    public function reserve()
+    {
+        return $this->hasOne(Reserve::class);
+    }
+    public function comment()
+    {
+        return $this->hasOne(Comment::class);
+    }
     public function owner()
     {
-        return $this->hasMany(Owner::class);
+        return $this->hasOne(Owner::class);
     }
 }

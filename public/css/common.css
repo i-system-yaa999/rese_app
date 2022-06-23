@@ -36,10 +36,12 @@ body{
   margin: 0 30px 20px;
   padding-top: 10px;
   padding-bottom: 10px;
+  height: 7vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
+  border-bottom:3px solid #4C7EFF;
 }
 .site_catch a{
   text-decoration: none;
@@ -284,7 +286,6 @@ body{
   padding: 0 0 40px 0;
   text-align: center;
   box-shadow: 2px 2px 4px 2px gray;
-  /* position: relative; */
 }
 @media(max-width:769px) {
   .message_box{
@@ -317,15 +318,12 @@ body{
 }
 .message_form .error_disp{
   border: none;
-  /* border-bottom: 1px solid black; */
-  /* margin-bottom: 15px; */
   width: 70%;
 }
 .message_box button {
   background-color: var(--middleblue);
   color: white;
   border-radius: 5px;
-  /* font-size: 0.7rem; */
   padding: 5px 20px;
   text-decoration: none;
   margin: 15px 0 0 auto;

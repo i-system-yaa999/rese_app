@@ -46,9 +46,7 @@
     <div class="tbl-comment tbl-head">
       <div></div>
       <div class="item-center item-id">ID</div>
-      {{-- <div class="item-id">ユーザーID</div> --}}
       <div>ユーザー名</div>
-      {{-- <div class="item-id">店舗ID</div> --}}
       <div>店舗名</div>
       <div>評価(0～5)</div>
       <div>評価コメント</div>
@@ -75,7 +73,6 @@
         <div class="item-center item-id" name="comment_id{{$comment->id}}" id="comment_id{{$comment->id}}">{{$comment->id}}</div>
         {{-- ユーザー名 --}}
         <div class="item-user-name">
-          {{-- <input type="hidden" name="" class="inputbox" value="{{$comment->user->id}}"> --}}
           <select name="comment_user_id{{$comment->id}}" id="comment_user_id{{$comment->id}}" class="selectbox" form="admincng" onchange="unregisteredComment({{$comment->id}})">
             <option value="{{($comment->user->id ?? '9999')}}">{{($comment->user->id ?? '9999').'：'.($comment->user->name ?? '未登録')}}</option>
             @foreach($allusers as $user)
@@ -88,7 +85,6 @@
         </div>
         {{-- 店舗名 --}}
         <div class="item-shop-name">
-          {{-- <input type="hidden" name="" class="inputbox" value="{{$comment->shop->id}}"> --}}
           <select name="comment_shop_id{{$comment->id}}" id="comment_shop_id{{$comment->id}}" class="selectbox" form="admincng" onchange="unregisteredComment({{$comment->id}})">
             <option value="{{($comment->shop->id ?? '9999')}}">{{($comment->shop->id ?? '9999').'：'.($comment->shop->name ?? '未登録')}}
             </option>
@@ -123,7 +119,6 @@
         <div class="item-created">{{$comment->created_at}}<span class="hr"></span>{{$comment->updated_at}}</div>
         {{-- 登録ボタン --}}
         <div class="item-center item-modify">
-          {{-- <button class="btn btn-modify" type="submit" formaction="/admin?comment_id={{$comment->id}}" form="admincng">登録</button> --}}
           <button class="btn btn-modify" type="submit" onclick="unregisteredCommentSend({{$comment->id}})">登録</button>
         </div>
         {{-- 削除ボタン --}}

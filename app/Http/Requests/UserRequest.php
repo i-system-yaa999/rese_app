@@ -25,10 +25,8 @@ class UserRequest extends FormRequest
     {
         return [
             'user_name' => 'required|max:191',
-            // 'user_email' => 'required|max:191|unique:users',
             'user_email' => 'required|max:191',
             'user_password' => 'required|max:191',
-            // 'user_role' => 'required',
         ];
     }
 
@@ -42,7 +40,6 @@ class UserRequest extends FormRequest
             'user_email.unique' => 'すでに登録されています。',
             'user_password.required' => '必須項目です。',
             'user_password.max' => '最大191文字です。',
-            // 'user_role.required' => '必須項目です。',
         ];
     }
 }

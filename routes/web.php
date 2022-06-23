@@ -28,7 +28,6 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OwnerController;
-use Illuminate\Http\Request;
 
 // 初期表示
 Route::get('/',[ShopController::class,'index']);
@@ -90,9 +89,6 @@ Route::controller(AdminController::class)->group(function() {
         Route::put('/admin', 'update');
         Route::delete('/admin', 'delete');
         Route::get('/admin/search', 'search');
-        // Route::get('/admin/search', function(){
-        //     return 'ok';
-        // });
     });
 });
 
@@ -108,7 +104,11 @@ Route::controller(OwnerController::class)->group(function () {
 
 
 
-
+Route::get('/about', [ShopController::class, 'index']);
+Route::get('/agreement', [ShopController::class, 'index']);
+Route::get('/policy', [ShopController::class, 'index']);
+Route::get('/contact', [ShopController::class, 'index']);
+Route::get('/sitemap', [ShopController::class, 'index']);
 
 
 // 以下 fortify用 「vendor/laravel/fortify/routes/routes.php」より移設

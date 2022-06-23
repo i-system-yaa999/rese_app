@@ -38,10 +38,8 @@
     <div class="tbl-reserve tbl-head">
       <div></div>
       <div class="item-center item-id">ID</div>
-      {{-- <div class="item-id">予約者ID</div> --}}
       <div>予約者名</div>
       <div>E-Mail</div>
-      {{-- <div class="item-id">店舗ID</div> --}}
       <div></div>
       <div>店舗名</div>
       <div>予約日時</div>
@@ -69,7 +67,6 @@
       <div class="item-center item-id" name="reserve_id{{$reserve->id}}" id="reserve_id{{$reserve->id}}">{{$reserve->id}}</div>
       {{-- ユーザー名 --}}
       <div class="item-center item-user-name">
-        {{-- <input type="hidden" name="" class="inputbox" value="{{$reserve->user->id}}"> --}}
         <select name="reserve_user_id{{$reserve->id}}" id="reserve_user_id{{$reserve->id}}" class="selectbox" form="admincng" onchange="unregisteredReserve({{$reserve->id}})">
           <option value="{{$reserve->user->id}}">{{$reserve->user->id.'：'.$reserve->user->name}}</option>
           @foreach($allusers as $user)
@@ -86,7 +83,6 @@
       <div class="item-center item-mailsend"><button class="btn btn-mailsend">メール送信</button></div>
       {{-- 店舗名 --}}
       <div class="item-shop-name">
-        {{-- <input type="hidden" name="" class="inputbox" value="{{$reserve->shop->id}}"> --}}
         <select name="reserve_shop_id{{$reserve->id}}" id="reserve_shop_id{{$reserve->id}}" class="selectbox" form="admincng" onchange="unregisteredReserve({{$reserve->id}})">
           <option value="{{$reserve->shop->id}}">{{$reserve->shop->id.'：'.$reserve->shop->name}}</option>
           @foreach($allshops as $shop)
@@ -129,7 +125,6 @@
       <div class="item-created">{{$reserve->created_at}}<span class="hr"></span>{{$reserve->updated_at}}</div>
       {{-- 登録ボタン --}}
       <div class="item-center item-modify">
-        {{-- <button class="btn btn-modify" type="submit" formaction="/admin?reserve_id={{$reserve->id}}" form="admincng">登録</button> --}}
         <button class="btn btn-modify" type="submit" onclick="unregisteredReserveSend({{$reserve->id}})">登録</button>
       </div>
       {{-- 削除ボタン --}}

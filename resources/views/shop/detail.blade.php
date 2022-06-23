@@ -18,7 +18,7 @@
   @include('layouts.forms')
   <section class="content_main">
     <div class="detail_frame" name="detail" id="detail">
-      <!-- 店舗詳細 -------------------------------------------------------------------------------- -->
+      <!-- 店舗詳細  -->
       <div class="detail_data">
         <!-- 店舗情報 -->
         <div class="content_item">
@@ -54,7 +54,6 @@
                 <span>{{$shop->likes_count}}人</span>
               </div>
             </div>
-            {{-- <button>画像の保存</button> --}}
           </div>
         </div>
         <!--  -->
@@ -62,7 +61,7 @@
       <!-- ----- end ----- -->
     </div>
     <div class="reserve_frame" name="reserve" id="reserve">
-      <!-- 予約確認 -------------------------------------------------------------------------------- -->
+      <!-- 予約確認  -->
       <h3 class="reserve_head">予約</h3>
       <!--  -->
       <div class="reserve_inner">

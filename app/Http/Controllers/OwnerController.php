@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Shop;
 use App\Models\Area;
@@ -44,11 +43,6 @@ class OwnerController extends Controller
     public function update(ShopRequest $request)
     {
         // 店舗 情報 登録
-        // $shop = new ShopRequest;
-        // $validator = Validator::make($request->all(), $shop->rules(), $shop->messages());
-        // if ($validator->fails()) {
-        //     return back()->withErrors($validator)->withInput();
-        // }
         Shop::where('id', $request->shop_id)->update([
             'name' => $request->input('shop_name'),
             'area_id' => $request->input('shop_area_id'),
@@ -75,27 +69,11 @@ class OwnerController extends Controller
     public function index(Request $request)
     {
         $displays = 1;
-
-        // $owners = Owner::where('user_id',Auth::user()->id)->get();
-        // foreach($owners as $owner){
-        //     // dd($owner->shop);
-        //     array_push($shops,$owner->shop);
-        // }
-        // dd($shops);
-        // if(count($owners) > 0) {
-            return view('owner/owner')->with([
-                'owners' => Owner::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'shopspage'),
-                'allareas' => Area::all(),
-                'allgenres' => Genre::all(),
-                'create_item_id' =>  $request->input('create_item_id') ?? '9999',
-            ]);
-        // }else{
-// dd($owners);
-//             return view('owner/owner')->with([
-//                 'allareas' => Area::all(),
-//                 'allgenres' => Genre::all(),
-//                 'create_item_id' =>  $request->input('create_item_id') ?? '9999',
-//             ]);
-//         }
+        return view('owner/owner')->with([
+            'owners' => Owner::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'shopspage'),
+            'allareas' => Area::all(),
+            'allgenres' => Genre::all(),
+            'create_item_id' =>  $request->input('create_item_id') ?? '9999',
+        ]);
     }
 }

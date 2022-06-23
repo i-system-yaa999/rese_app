@@ -18,7 +18,7 @@ class LikeFactory extends Factory
     {
         return [
             'user_id' => $this->faker->numberBetween(1, 11),//ダミー10件+自分を後から登録したとき用1件
-            'shop_id' => $this->faker->numberBetween(1, 200),
+            'shop_id' => $this->faker->numberBetween(1, 20),
         ];
     }
 }

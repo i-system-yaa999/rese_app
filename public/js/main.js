@@ -1,7 +1,3 @@
-function test() {
-  alert('test ok');
-}
-
 /* -------------------------------------------------- */
 function tabChange() {
   let form = document.getElementById('search');
@@ -16,7 +12,6 @@ function selectboxChange() {
   form.method = 'get';
   form.submit();
 }
-
 /* -------------------------------------------------- */
 function cngReserve() {
   let date = document.getElementById('inputDate');
@@ -26,8 +21,6 @@ function cngReserve() {
   document.getElementById('confirmTime').innerText = time.value + " ～";
   document.getElementById('confirmNumber').innerText = number.value + " 人";
 }
-
-
 /* -------------------------------------------------- */
 function cngMyReserveToggle(id) {
   let change = document.getElementById('reserve_change' + id);
@@ -169,5 +162,4 @@ function myReserveCancel(id) {
         break;
     }
     document.getElementById('my_star' + id).value = my_star;
-    // alert(my_star);
   }

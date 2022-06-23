@@ -29,7 +29,6 @@ class ShopRequest extends FormRequest
                 'shop_genre_id' => 'required',
                 'shop_summary' => 'required',
                 'shop_image_url' => 'required|max:191',
-                // 'shop_likes_count' => 'required',
             ];
     }
 

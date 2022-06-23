@@ -38,8 +38,6 @@
     </nav>
     {{-- nav end --}}
 
-    {{-- <form action="/owner" id="owner"></form> --}}
-
     {{-- content --}}
     <section class="content_frame">
       {{-- tab head --}}
@@ -106,14 +104,14 @@
                 </option>
                 <option value="image/kissaten.jpg" @if($owner->shop->image_url == "image/kissaten.jpg") selected @endif>7 :
                   image/kissaten.jpg</option>
-                <option value="image/familyrestaurant.jpg" @if($owner->shop->image_url == "image/familyrestaurant.jpg") selected
-                  @endif>8 : image/familyrestaurant.jpg</option>
+                <option value="image/familyrestaurant.png" @if($owner->shop->image_url == "image/familyrestaurant.png") selected
+                  @endif>8 : image/familyrestaurant.png</option>
                 <option value="image/coffee.jpg" @if($owner->shop->image_url == "image/coffee.jpg") selected @endif>9 : image/coffee.jpg
                 </option>
                 <option value="image/curry.jpg" @if($owner->shop->image_url == "image/curry.jpg") selected @endif>10 : image/curry.jpg
                 </option>
-                <option value="image/teisyoku.jpg" @if($owner->shop->image_url == "image/teisyoku.jpg") selected @endif>11 :
-                  image/teisyoku.jpg</option>
+                <option value="image/teisyoku.jpeg" @if($owner->shop->image_url == "image/teisyoku.jpeg") selected @endif>11 :
+                  image/teisyoku.jpeg</option>
                 <option value="image/soba.jpg" @if($owner->shop->image_url == "image/soba.jpg") selected @endif>12 : image/soba.jpg
                 </option>
               </select>
@@ -204,10 +202,8 @@
               <div class="content_inner_frame">
                 <p class="content_hashtag">
                   {{-- エリア --}}
-                  {{-- <input type="radio" name="tab_item" id="area" value=1 onChange="tabChange()"> --}}
                   <label id="confirm_shop_area" class="shop_address" for="area">#{{$owner->shop->area->name ?? '未登録'}}</label>
                   {{-- ジャンル --}}
-                  {{-- <input type="radio" name="tab_item" id="genre" value=2 onChange="tabChange()"> --}}
                   <label id="confirm_shop_genre" class="shop_genre" for="genre">#{{$owner->shop->genre->name ?? '未登録'}}</label>
                 </p>
                 {{-- 店舗詳細 --}}

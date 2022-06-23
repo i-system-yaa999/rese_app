@@ -59,7 +59,6 @@
       <div class="item-created">{{$genre->created_at}}<span class="hr"></span>{{$genre->updated_at}}</div>
       {{-- 登録ボタン --}}
       <div class="item-center item-modify">
-        {{-- <button class="btn btn-modify" type="submit" formaction="/admin?genre_id={{$genre->id}}" form="admincng">登録</button> --}}
         <button class="btn btn-modify" type="submit" onclick="unregisteredGenreSend({{$genre->id}})">登録</button>
       </div>
       {{-- 削除ボタン --}}

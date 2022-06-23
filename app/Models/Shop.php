@@ -33,16 +33,6 @@ class Shop extends Model
         ];
         return $data;
     }
-    // public function getAreaName()
-    // {
-    //     $area = Area::find($this->area_id)->name;
-    //     return $area;
-    // }
-    // public function getGenreName()
-    // {
-    //     $genre = Genre::find($this->genre_id)->name;
-    //     return $genre;
-    // }
     public function getLike()
     {
         $like = Like::where('user_id', Auth::user()->id)->where('shop_id', $this->id)->first();
@@ -56,5 +46,21 @@ class Shop extends Model
     public function genre()
     {
         return $this->belongsTo(Genre::class);
+    }
+    public function like()
+    {
+        return $this->hasOne(Like::class);
+    }
+    public function reserve()
+    {
+        return $this->hasOne(Reserve::class);
+    }
+    public function comment()
+    {
+        return $this->hasOne(Comment::class);
+    }
+    public function owner()
+    {
+        return $this->hasOne(Owner::class);
     }
 }

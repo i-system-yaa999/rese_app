@@ -26,7 +26,6 @@ class OwnerRequest extends FormRequest
         return [
                 'owner_user_id' => 'required',
                 'owner_user_name' => 'required|max:191',
-                // 'owner_user_email' => 'required|max:191|unique:users',
                 'owner_user_email' => 'required|max:191',
                 'owner_user_password' => 'required|max:191',
                 'owner_shop_id' => 'required',

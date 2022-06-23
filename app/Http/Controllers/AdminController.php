@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Shop;
@@ -201,7 +200,6 @@ class AdminController extends Controller
                 'genre_id' => $request->input('shop_genre_id'),
                 'summary' => $request->input('shop_summary'),
                 'image_url'=>$request->input('shop_image_url'),
-                // 'likes_count'=>$request->input('shop_likes_count'),
             ]);
         }
         // エリア 情報 登録
