@@ -35,9 +35,3 @@
   </nav>
   <button class="nav-button" type="button" onclick="navFunc()"></button>
 </header>
-
-<script>
-  function navFunc() {
-    document.querySelector('html').classList.toggle('open');
-  }
-</script>

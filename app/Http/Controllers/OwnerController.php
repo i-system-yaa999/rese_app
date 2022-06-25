@@ -13,15 +13,14 @@ use App\Models\Like;
 use App\Models\Reserve;
 use App\Models\Comment;
 use App\Models\Owner;
-
+use App\Http\Requests\ReserveRequest;
 use App\Http\Requests\ShopRequest;
 
 class OwnerController extends Controller
 {
-    
+    // 店舗 情報 新規作成
     public function create(Request $request)
     {
-        // 店舗 情報 新規作成
         $data1 = Shop::create([
             'name' => '',
             'area_id' => 9999,
@@ -40,9 +39,15 @@ class OwnerController extends Controller
             'create_item_id' => $create_item_id ?? '9999',
         ]);   
     }
-    public function update(ShopRequest $request)
+
+    // 店舗 情報 登録
+    public function update(Request $request)
     {
-        // 店舗 情報 登録
+        $shop = new ShopRequest;
+        $validator = Validator::make($request->all(), $shop->rules(), $shop->messages());
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
         Shop::where('id', $request->shop_id)->update([
             'name' => $request->input('shop_name'),
             'area_id' => $request->input('shop_area_id'),
@@ -50,12 +55,13 @@ class OwnerController extends Controller
             'summary' => $request->input('shop_summary'),
             'image_url' => $request->input('shop_image_url'),
         ]);
-        
+
         return back();
     }
+    
+    // 店舗 情報 削除
     public function delete(Request $request)
     {
-        // 店舗 情報 削除
         Comment::where('shop_id', $request->shop_id)->delete();
         Like::where('shop_id', $request->shop_id)->delete();
         Reserve::where('shop_id', $request->shop_id)->delete();
@@ -68,12 +74,48 @@ class OwnerController extends Controller
     // 管理画面表示
     public function index(Request $request)
     {
-        $displays = 1;
         return view('owner/owner')->with([
-            'owners' => Owner::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->Paginate($displays, ['*'], 'shopspage'),
+            'owners' => Owner::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->Paginate(1, ['*'], 'shopspage'),
             'allareas' => Area::all(),
             'allgenres' => Genre::all(),
             'create_item_id' =>  $request->input('create_item_id') ?? '9999',
         ]);
+    }
+
+    // 予約情報確認
+    public function reserve(Request $request,$shop_id)
+    {
+        $displays = 10;
+        $reserves = Reserve::where('shop_id', $shop_id)->get();
+        // dd($reserves);
+        return view('owner/reserve')->with([
+            'reserves' => $reserves,
+            'create_item_id' =>  $request->input('create_item_id') ?? '9999',
+        ]);
+    }
+
+    // 予約情報変更
+    public function update_reserve(Request $request)
+    {
+        $reserve = new ReserveRequest;
+        $validator = Validator::make($request->all(), $reserve->rules(), $reserve->messages());
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        Reserve::where('id', $request->reserve_id)->update([
+            'user_id' => $request->input('reserve_user_id'),
+            'shop_id' => $request->input('reserve_shop_id'),
+            'reserved_at' => $request->input('reserve_date') . ' ' . $request->input('reserve_time'),
+            'number' => $request->input('reserve_number'),
+        ]);
+
+        return back();
+    }
+
+    // 予約情報削除
+    public function delete_reserve(Request $request)
+    {
+        Reserve::find($request->reserve_id)->delete();
+        return back();       
     }
 }

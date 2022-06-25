@@ -17,7 +17,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        
+        $user = new User([
+            'name' => 'つうじょうゆーざー',
+            'email' => 'user@system.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('1234567890'),
+            'remember_token' => Str::random(10),
+            'role' => '10',
+        ]);
+        $user->save();
+
         $user = new User([
             'name' => 'てんぽだいひょう',
             'email' => 'owner@system.com',
@@ -28,7 +37,7 @@ class UsersTableSeeder extends Seeder
         ]);
         $user->save();
         $owner = new Owner([
-            'user_id' => 1,
+            'user_id' => 2,
             'shop_id' => 1,
         ]);
         $owner->save();

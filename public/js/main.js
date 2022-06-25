@@ -1,4 +1,8 @@
 /* -------------------------------------------------- */
+function navFunc() {
+  document.querySelector('html').classList.toggle('open');
+}
+/* -------------------------------------------------- */
 function tabChange() {
   let form = document.getElementById('search');
   // form.action = '/shop';

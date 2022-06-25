@@ -20,26 +20,21 @@
       </div>
       <div class="message">
         <p>以下の内容にて、ご予約を受け付け致しました。</p>
+        <p>ご来店の際に下記のＱＲを提示してください。</p>
+        <hr>
         <p>店舗名：{{$shop_name}}</p>
         <p>エリア：{{$shop_area}}</p>
         <p>ご予約日時：{{$reserved_at}}</p>
-        <!-- <p>ご予約日 : {{--$reserve_date--}}</p> -->
-        <!-- <p>ご予約時間 : {{--$reserve_time--}}</p> -->
         <p>人数 : {{$reserve_number}}名様</p>
         <div class="qr">{!!$qrcode!!}</div>
         <p>予約者情報</p>
         <p>お名前 : {{$user->name}}様</p>
         <p>連絡先Email : {{$user->email}}</p>
+        <p><a href="/">トップページに戻る</a></p>
       </div>
     </div>
   </section>
   @include('layouts.footer')
 </body>
-<style>
-  .qr{
-    display: flex;
-    justify-content: center;
-  }
-</style>
 
 </html>
