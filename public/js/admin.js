@@ -225,6 +225,46 @@ function unregisteredReserveSend(id) {
   form.submit();
 }
 /* -------------------------------------------------- */
+function unregisteredReserveByOwner(id){
+  this.itemModify(id);
+
+  let newReserveId = document.getElementById('reserve_id' + id);
+  let newReserveUserId = document.getElementById('reserve_user_id' + id);
+  let newReserveUserName = document.getElementById('reserve_user_name' + id);
+  let newReserveShopId = document.getElementById('reserve_shop_id' + id);
+  let newReserveShopName = document.getElementById('reserve_shop_name' + id);
+  let newReserveDate = document.getElementById('reserve_date' + id);
+  let newReserveTime = document.getElementById('reserve_time' + id);
+  let newReserveNumber = document.getElementById('reserve_number' + id);
+
+  let sendReserveId = document.getElementById('reserve_id');
+  let sendReserveUserId = document.getElementById('reserve_user_id');
+  let sendReserveUserName = document.getElementById('reserve_user_name');
+  let sendReserveShopId = document.getElementById('reserve_shop_id');
+  let sendReserveShopName = document.getElementById('reserve_shop_name');
+  let sendReserveDate = document.getElementById('reserve_date');
+  let sendReserveTime = document.getElementById('reserve_time');
+  let sendReserveNumber = document.getElementById('reserve_number');
+
+  sendReserveId.value = newReserveId.value;
+  sendReserveUserId.value = newReserveUserId.value;
+  sendReserveUserName.value = newReserveUserName.value;
+  sendReserveShopId.value = newReserveShopId.value;
+  sendReserveShopName.value = newReserveShopName.value;
+  sendReserveDate.value = newReserveDate.value;
+  sendReserveTime.value = newReserveTime.value;
+  sendReserveNumber.value = newReserveNumber.value;
+}
+/* -------------------------------------------------- */
+function unregisteredReserveSendByOwner(id) {
+  let form = document.getElementById('ownercng');
+  form.action = "/owner/reserve";
+  // form.method = 'put';
+  this.unregisteredReserveByOwner(id);
+
+  form.submit();
+}
+/* -------------------------------------------------- */
 function unregisteredLike(id){
   this.itemModify(id);
 
@@ -307,4 +347,9 @@ function adminSearch() {
   form.action = '/admin/search';
   form.method = 'get';
   form.submit();  
+}
+/* -------------------------------------------------- */
+function ownerRserve() {
+  let shop = document.getElementById('act_shop_id');
+  location.href = "/owner/reserve/" + shop.value;
 }

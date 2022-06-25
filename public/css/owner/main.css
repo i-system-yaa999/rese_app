@@ -9,6 +9,8 @@ li{
 }
 .header{
   padding: 30px;
+  border-bottom: 3px solid blue;
+  margin-bottom: 20px;
 }
 
 
@@ -127,4 +129,54 @@ input[name="tab_item"] {
 
 .bookmark_frame span {
   margin-left: 0.2vw;
+}
+
+
+
+/* -------------------------------------------------- */
+:root {
+  --check: 24px;
+  --id: 36px;
+
+  --ownerid: 48px;
+  --userid: 48px;
+  --shopid: 48px;
+  --areaid: 48px;
+  --genreid: 48px;
+  --reserveid: 48px;
+
+  --ownername: 156px;
+  --username: 156px;
+  --shopname: 156px;
+  --areaname: 204px;
+  --genrename: 180px;
+
+  --email: 20fr;
+  --password: 12fr;
+
+  --comment: 20fr;
+  --image: 120px;
+  --likecount: 48px;
+  --reservenum: 60px;
+  --evaluation: 10rem;
+
+  --reserved: 240px;
+  --created: 180px;
+  --modify: 48px;
+  --delete: 48px;
+  --emailsend: 96px;
+  --detail: 84px;
+
+  --dummy: 5fr;
+  --dummyend: 10px;
+}
+
+.tbl-reserve {
+  display: grid;
+  grid-template-columns: var(--check) var(--id) minmax(var(--shopname), 5fr) minmax(var(--username), 5fr) var(--email) var(--emailsend) minmax(var(--reserved), 7fr) var(--reservenum) var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id username emailsend shopname reserved reservenum created modify delete dummyend;
+}
+
+.inputbox {
+  background-color: white;
 }

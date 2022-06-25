@@ -99,6 +99,9 @@ Route::controller(OwnerController::class)->group(function () {
         Route::post('/owner', 'create');
         Route::put('/owner', 'update');
         Route::delete('/owner', 'delete');
+        Route::get('/owner/reserve/{shop_id}', 'reserve');
+        Route::put('/owner/reserve', 'update_reserve');
+        Route::delete('/owner/reserve', 'delete_reserve');
     });
 });
 

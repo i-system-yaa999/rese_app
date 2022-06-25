@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ShopRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
 use App\Models\Area;
@@ -141,11 +140,5 @@ class ShopController extends Controller
             'comments'=> $comments,
             'iscomment'=> $iscomment ?? '',
         ]);
-    }
-    public function create(Request $request)
-    {
-    }
-    public function delete(Request $request)
-    {
     }
 }

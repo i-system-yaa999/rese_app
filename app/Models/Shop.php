@@ -55,6 +55,10 @@ class Shop extends Model
     {
         return $this->hasOne(Reserve::class);
     }
+    public function reserves()
+    {
+        return $this->hasMany(Reserve::class);
+    }
     public function comment()
     {
         return $this->hasOne(Comment::class);

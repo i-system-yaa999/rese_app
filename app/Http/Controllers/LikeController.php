@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\LikeRequest;
 use App\Models\Like;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;

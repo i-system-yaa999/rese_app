@@ -28,10 +28,9 @@
       {{-- nav content 3 --}}
       <div class="nav_content" id="content3">
         <div class="nav_content" id="content3">
-          <p class="nav_content_title">店舗</p>
           <button type="submit" class="nav_content_item" form="owner">新規作成</button>
-          <p class="nav_content_item">　</p>
-          <a class="nav_content_item" href="/user/logout">ログアウト</a>
+          <button type="" class="nav_content_item" onclick="ownerRserve()">予約確認</button>
+          <p><a class="nav_content_item" href="/user/logout">ログアウト</a></p>
         </div>
       </div>
 
@@ -73,7 +72,7 @@
           <ul>
             <li>
               {{-- id --}}
-              <label for="shop_id">ID</label>
+              <label for="shop_id{{$owner->shop->id}}">ID</label>
               <input type="text" name="shop_id{{$owner->shop->id}}" id="shop_id{{$owner->shop->id}}" class="item-id" value="{{$owner->shop->id}}" readonly>
             </li>
             <li>
@@ -172,7 +171,8 @@
           </ul>  
           
           <div class="debug">
-            <input type="text" id="shop_id" name="shop_id" form="ownercng" placeholder="id" value="{{old('shop_id')}}">
+            <input type="text" id="act_shop_id" name="act_shop_id" placeholder="actual shop_id" value="{{$owner->shop->id ?? ''}}">
+            <input type="text" id="shop_id" name="shop_id" form="ownercng" placeholder="shop_id" value="{{old('shop_id')}}">
             <input type="text" id="shop_name" name="shop_name" form="ownercng" placeholder="name" value="{{old('shop_name')}}">
             <input type="text" id="shop_area_id" name="shop_area_id" form="ownercng" placeholder="area_id" value="{{old('shop_area_id')}}">
             <input type="text" id="shop_area_name" name="shop_area_name" form="ownercng" placeholder="area" value="{{old('shop_area_name')}}">

@@ -1,0 +1,85 @@
+/* -------------------------------------------------- */
+:root {
+  --check: 24px;
+  --id: 36px;
+
+  --ownerid: 48px;
+  --userid: 48px;
+  --shopid: 48px;
+  --areaid: 48px;
+  --genreid: 48px;
+  --reserveid: 48px;
+
+  --ownername: 156px;
+  --username: 156px;
+  --shopname: 156px;
+  --areaname: 204px;
+  --genrename: 180px;
+
+  --email: 20fr;
+  --password: 12fr;
+
+  --comment: 20fr;
+  --image: 120px;
+  --likecount: 48px;
+  --reservenum: 60px;
+  --evaluation: 10rem;
+
+  --reserved: 240px;
+  --created: 180px;
+  --modify: 48px;
+  --delete: 48px;
+  --emailsend: 96px;
+  --detail: 84px;
+
+  --dummy: 5fr;
+  --dummyend: 10px;
+}
+
+.tbl-owner {
+  display: grid;
+  grid-template-columns: var(--check) var(--id) minmax(var(--ownername), 5fr) var(--email) var(--emailsend) var(--password) minmax(var(--shopname), 5fr) var(--detail) var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id userid ownername email emailsend password shopname detail created modify delete dummyend;
+}
+
+.tbl-user {
+  display: grid;
+  grid-template-columns: var(--check) var(--id) minmax(var(--username), 5fr) var(--email) var(--emailsend) var(--password) var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id username email emailsend password created modify delete dummyend;
+}
+
+.tbl-shop {
+  display: grid;
+  grid-template-columns: var(--check) var(--id) minmax(var(--shopname), 5fr) var(--areaname) var(--genrename) var(--comment) var(--image) var(--likecount) var(--detail) var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id shopname areaname genrename comment image likecount detail created modify delete dummyend;
+}
+
+.tbl-area {
+  display: grid;
+  grid-template-columns: var(--check) var(--id) var(--areaname) 1fr var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id areaname dummy created modify delete dummyend;
+}
+
+.tbl-genre {
+  display: grid;
+  grid-template-columns: var(--check) var(--id) var(--genrename) 1fr var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id genrename dummy created modify delete dummyend;
+}
+
+.tbl-reserve {
+  display: grid;
+  grid-template-columns: var(--check) var(--id) minmax(var(--username), 5fr) var(--email) var(--emailsend) minmax(var(--shopname), 5fr) minmax(var(--reserved), 7fr) var(--reservenum) var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id username emailsend shopname reserved reservenum created modify delete dummyend;
+}
+
+.tbl-like {
+  display: grid;
+  grid-template-columns: var(--check) var(--id) minmax(var(--username), 5fr) minmax(var(--shopname), 5fr) var(--dummy) var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id username shopname dummy created modify delete dummyend;
+}
+
+.tbl-comment {
+  display: grid;
+  grid-template-columns: var(--check) var(--id) minmax(var(--username), 5fr) minmax(var(--shopname), 5fr) var(--evaluation) var(--comment) var(--created) var(--modify) var(--delete) var(--dummyend);
+  grid-template-areas: check id username shopname evaluation comment created modify delete dummyend;
+}

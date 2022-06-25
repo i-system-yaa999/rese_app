@@ -22,7 +22,4 @@ class AreaController extends Controller
         ]);
         return;
     }
-    public function delete(Request $request)
-    {
-    }
 }
