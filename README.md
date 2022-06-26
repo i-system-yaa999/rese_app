@@ -153,4 +153,4 @@ mysqlコマンド：create database rese_app;
 
 ## Licence
 ---
-"リポジトリ名" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+[MIT license](https://en.wikipedia.org/wiki/MIT_License).
