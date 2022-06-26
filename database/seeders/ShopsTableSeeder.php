@@ -209,7 +209,7 @@ class ShopsTableSeeder extends Seeder
             'image_url' => 'image/yakiniku.jpg',
             'area_id' => 1,
             'genre_id' => 5,
-            'likes_count' => 0,
+            'likes_count' => 1,
         ]);
         $shop->save();
 
