@@ -76,10 +76,10 @@ https://github.com/i-system-yaa999/rese_app.git
 ## Install(インストール)
 ---
 
-1. 初めにプロジェクトファイルをクローンダウンロードします。 
+1. 初めにプロジェクトファイルをクローンダウンロードします。   
 コマンドプロンプト： git clone -b develop https://github.com/i-system-yaa999/rese_app.git 
 
-2. ライブラリをインストールします。
+2. ライブラリをインストールします。  
 コマンドプロンプト：composer install
 
 3. .env.exampleファイルをコピーして.envに改名します。ファイル内のデータベース名をrese_appに修正します。
